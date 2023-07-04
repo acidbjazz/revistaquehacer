@@ -1,0 +1,61 @@
+@use "@/styles/vars";
+
+.hero {
+  @include vars.grid-system;
+  .date {
+    @include vars.eyebrow;
+  }
+  h1 {
+    @include vars.headline;
+    margin-block-start: 40px;
+  }
+  .abstract {
+    @include vars.abstract;
+    margin-block-start: 20px;
+  }
+  .cover {
+    @include vars.wrap(0);
+    inline-size: calc(100% - 40px);
+    block-size: auto;
+    margin-inline: auto;
+    margin-block-start: 80px;
+    border-radius: 8px;
+  }
+}
+
+.introduction {
+  @include vars.grid-system;
+  margin-block-start: 160px;
+  h2 {
+    @include vars.eyebrow;
+  }
+  .body {
+    @include vars.wrap(6);
+    margin-block-start: 60px;
+    font-size: 18px;
+  }
+}
+
+.contents {
+  @include vars.grid-system;
+  margin-block-start: 160px;
+  h2 {
+    @include vars.eyebrow;
+  }
+  ul {
+    @include vars.wrap(6);
+    list-style-type: none;
+    margin-block-start: 80px;
+    padding-inline-start: 0;
+    font-size: 14px;
+    li {
+      border-block-end: 1px solid;
+      a {
+        color: inherit;
+        text-decoration: none;
+        padding-block: 10px;
+        display: block;
+      }
+    }
+  }
+}

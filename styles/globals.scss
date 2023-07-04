@@ -1,0 +1,33 @@
+@use "vars";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  // line-height: 1.15;
+  // font-family: vars.$serif;
+  // color: vars.$gray700;
+  color: red;
+}
+
+p {
+  margin-block-start: 30px;
+  &:first-child {
+    margin-block-start: 0;
+  }
+}
+
+h1,
+h2,
+h3 {
+  color: black;
+  font-weight: 400;
+  margin: 0;
+}
+
+img {
+  border-radius: 20px;
+}

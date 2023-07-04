@@ -1,4 +1,4 @@
-import { Article } from "./interfaces";
+import { Article, Issue, Data } from "./interfaces";
 
 const API_URL = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`;
 const API_AUTH = `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`;
@@ -15,32 +15,102 @@ async function graphqlClient(query: string): Promise<any> {
   return response.json();
 }
 
-export async function getArticles(): Promise<Article[]> {
+export async function getData(): Promise<Data> {
   const query = `{
-    articleCollection {
+    datosCollection {
       items {
-        sys { id }
-        title
-        slug
-        cover { url }
-        body
+        ultimoNumero
+        issn
+        etapaDigital
+        etapaImpresa
+        pie
       }
     }
   }`;
   const { data } = await graphqlClient(query);
-  return data.articleCollection.items;
+  return data.datosCollection.items[0];
 }
+
+export async function getIssues(): Promise<Issue[]> {
+  const query = `{
+    edicionCollection(order: numero_DESC, limit: 50) {
+      items {
+        numero
+        fecha
+        titulo
+        sumilla
+        portada { url }
+      }
+    }
+  }`;
+  const { data } = await graphqlClient(query);
+  return data.edicionCollection.items;
+}
+
+export async function getIssue(numero: string): Promise<Issue> {
+  const query = `{
+    edicionCollection(where: {numero: ${numero}}) {
+      items {
+        fecha
+        titulo
+        sumilla
+        portada { url }
+        creditos
+        presentacion
+        indiceCollection( limit:50 ) {
+          items {
+            __typename
+            ... on Seccion {
+              sys { id }
+              titulo
+            }
+            ... on Articulo {
+              sys { id }
+              titulo
+              slug
+              portada { url }
+            }
+          }
+        }
+      }
+    }
+  }`;
+  const { data } = await graphqlClient(query);
+  return data.edicionCollection.items[0];
+}
+
+// export async function getArticlesSlug(): Promise<Article[]> {
+//   const query = `{
+//     articuloCollection {
+//       items {
+//         slug
+//       }
+//     }
+//   }`;
+//   const { data } = await graphqlClient(query);
+//   return data.articuloCollection.items;
+// }
 
 export async function getArticle(slug: string): Promise<Article> {
   const query = `{
-    articleCollection(where: {slug: "${slug}"}) {
+    articuloCollection(where: {slug: "${slug}"}) {
       items {
-        title
-        cover { url }
-        body
+        sys { id }
+        titulo
+        slug
+        subtitulo
+        autorCollection {
+          items {
+            nombre
+            bio
+          }
+        }
+        portada { url }
+        creditosPortada
+        cuerpo
       }
     }
   }`;
   const { data } = await graphqlClient(query);
-  return data.articleCollection.items[0];
+  return data.articuloCollection.items[0];
 }

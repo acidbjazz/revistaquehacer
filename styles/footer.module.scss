@@ -1,0 +1,22 @@
+@use "@/styles/vars";
+
+.footer {
+  @include vars.grid-system;
+  @include vars.font-tiny;
+  background: vars.$gray900;
+  color: white;
+  text-align: center;
+  margin-block-start: 160px;
+  .content {
+    @include vars.wrap(6);
+    padding-block: 160px 80px;
+    .data {
+      a {
+        color: inherit;
+      }
+    }
+    .copy {
+      margin-block-start: 40px;
+    }
+  }
+}

@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
 export default function AboutPage() {
-  return <>About Page</>;
+  return <>Print Page</>;
 }
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "Impreso",
 };

@@ -1,0 +1,80 @@
+@use "@/styles/vars";
+
+.hero {
+  @include vars.grid-system;
+  .issn {
+    @include vars.eyebrow;
+  }
+  h1 {
+    @include vars.headline;
+    margin-block-start: 40px;
+  }
+}
+
+.lastIssue {
+  @include vars.grid-system;
+  margin-block-start: 160px;
+  h2 {
+    @include vars.eyebrow;
+  }
+  .cover {
+    @include vars.wrap(0);
+    margin-block-start: 80px;
+    display: inline-flex;
+    justify-content: center;
+    img {
+      inline-size: calc(100% - 40px);
+      block-size: auto;
+      border-radius: 8px;
+    }
+  }
+  .date {
+    @include vars.eyebrow;
+    margin-block-start: 40px;
+  }
+  .title {
+    @include vars.wrap(6);
+    @include vars.font-headline;
+    color: inherit;
+    text-decoration: none;
+    text-align: center;
+    font-size: 32px;
+    margin-block-start: 20px;
+  }
+  .abstract {
+    @include vars.abstract;
+    margin-block-start: 20px;
+  }
+}
+
+.previousIssues {
+  @include vars.grid-system;
+  margin-block-start: 160px;
+  h2 {
+    @include vars.eyebrow;
+  }
+  .grid {
+    @include vars.wrap(2);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-block-start: 80px;
+    .card {
+      color: inherit;
+      text-decoration: none;
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+      }
+      .date {
+        @include vars.font-eyebrow;
+        margin-block-start: 10px;
+      }
+      h3 {
+        font-size: 24px;
+        font-style: italic;
+      }
+    }
+  }
+}

@@ -1,0 +1,205 @@
+// FONTS
+$sans: var(--sans);
+$serif: var(--serif);
+
+// COLORS
+$gray300: #d8e2ed;
+$gray400: #b5bfca;
+$gray500: #97a0ab;
+$gray600: #6e7781;
+$gray700: #5a636d;
+$gray800: #3b444d;
+$gray900: #1a232b;
+
+// DIMENSIONS
+$page-width: 1440px;
+$columns: 26;
+
+// MIXINS
+@mixin grid-system {
+  display: grid;
+  grid-template-columns: 1fr repeat($columns, minmax(0, $page-width/$columns)) 1fr;
+}
+@mixin wrap($column) {
+  @if ($column == "full") {
+    grid-column: 1 / -1;
+  } @else {
+    grid-column: #{$column + 2} / -#{$column + 2};
+  }
+}
+@mixin line($width: 40px) {
+  display: block;
+  background: $gray700;
+  block-size: 1px;
+  inline-size: $width;
+}
+
+@mixin line-inline($width: 40px) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 5px;
+  &::before,
+  &::after {
+    content: "";
+    @include line($width);
+  }
+}
+
+@mixin line-start($width: 40px) {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  &::before {
+    content: "";
+    @include line($width);
+  }
+  margin-inline-start: -$width - 5px;
+}
+
+// FONT
+@mixin font-eyebrow {
+  font-family: $sans;
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+@mixin font-headline {
+  font-family: $serif;
+  font-size: 48px;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  font-weight: 400;
+}
+@mixin font-subtitle {
+  font-family: $sans;
+  font-size: 14px;
+  font-weight: 400;
+}
+@mixin font-author {
+  font-family: $sans;
+  font-size: 16px;
+  font-style: normal;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+@mixin font-bio {
+  font-family: $sans;
+  font-size: 14px;
+  font-weight: 400;
+}
+@mixin font-cover-credits {
+  font-family: $sans;
+  font-size: 14px;
+  font-weight: 400;
+}
+@mixin font-body {
+  font-family: $sans;
+  font-size: 17px;
+  line-height: 1.6;
+  font-weight: 300;
+}
+@mixin font-footnotes {
+  font-family: $sans;
+  font-size: 14px;
+  font-weight: 400;
+}
+// ------------------
+
+@mixin font-title-large {
+  font-family: $italic;
+  font-size: 40px;
+  line-height: 1.2;
+}
+@mixin font-abstract {
+  font-family: $sans;
+  line-height: 1.4;
+}
+
+@mixin font-tiny {
+  font-family: $sans;
+  font-size: 12px;
+}
+
+// TEXT
+@mixin eyebrow {
+  @include wrap(9);
+  @include font-eyebrow;
+  text-align: center;
+  color: $gray700;
+}
+@mixin headline {
+  @include wrap(3);
+  @include font-headline;
+  text-align: center;
+  color: black;
+  text-wrap: balance;
+}
+@mixin subtitle {
+  @include wrap(7);
+  @include font-subtitle;
+  color: $gray700;
+  @include line-inline(40px);
+}
+@mixin author {
+  @include font-author;
+  color: black;
+}
+@mixin bio {
+  @include font-bio;
+  color: $gray700;
+}
+@mixin cover-credits {
+  @include wrap(7);
+  @include font-cover-credits;
+  color: $gray700;
+  @include line-start(40px);
+}
+@mixin body {
+  @include wrap(7);
+  @include font-body;
+  color: $gray700;
+  strong,
+  em,
+  a {
+    color: black;
+  }
+  strong,
+  a {
+    font-weight: 500;
+  }
+  h3 {
+    font-family: $serif;
+    font-size: 32px;
+    margin-block-start: 50px;
+  }
+}
+@mixin footnotes {
+  @include font-footnotes;
+  h2 {
+    display: none;
+  }
+  a {
+    font-weight: 400;
+  }
+  ol > li {
+    margin-block-start: 10px;
+    &:first-child {
+      margin-block-start: 0;
+    }
+  }
+}
+
+// ------------------
+
+@mixin title-large {
+  @include wrap(4);
+  @include font-hero;
+  text-align: center;
+}
+@mixin abstract {
+  @include wrap(6);
+  @include font-abstract;
+  text-align: center;
+}

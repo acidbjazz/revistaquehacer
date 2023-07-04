@@ -1,16 +1,14 @@
-import styles from "@/styles/header.module.sass";
+import styles from "@/styles/header.module.scss";
 
 import Link from "next/link";
-import Menu from "@/components/menu";
 import SVG from "@/components/svg";
 
 export default function Header() {
   return (
     <header className={styles.header}>
       <Link href="/">
-        <SVG name="logo" width={40} />
+        <SVG name="logoQ" width={34} />
       </Link>
-      <Menu />
     </header>
   );
 }

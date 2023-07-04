@@ -6,7 +6,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.ctfassets.net",
         port: "",
-        pathname: "/zm4e8jz0ps44/**",
+        pathname: "/d94szfse8f33/**",
       },
     ],
   },

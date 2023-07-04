@@ -1,20 +1,15 @@
-import { Open_Sans, Roboto_Slab } from "next/font/google";
-import Sohne from "next/font/local";
+import { Open_Sans, Baskervville, Petrona } from "next/font/google";
 
 export const sans = Open_Sans({
-  weight: ["400", "600"],
+  weight: ["300", "400", "500"] /* 400 , 500, 300*/,
   subsets: ["latin"],
-  style: ["normal", "italic"],
+  style: ["normal", "italic"] /* normal */,
   variable: "--sans",
 });
 
-export const serif = Roboto_Slab({
-  weight: ["400", "500"],
+export const serif = Baskervville({
+  weight: ["400"] /* 400 */,
   subsets: ["latin"],
+  style: ["italic"],
   variable: "--serif",
-});
-
-export const mono = Sohne({
-  src: "../public/soehne-mono-web-buch.woff2",
-  variable: "--mono",
 });
