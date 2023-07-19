@@ -33,7 +33,6 @@ $columns: 26;
   block-size: 1px;
   inline-size: $width;
 }
-
 @mixin line-inline($width: 40px) {
   display: flex;
   align-items: center;
@@ -56,13 +55,25 @@ $columns: 26;
   }
   margin-inline-start: -$width - 5px;
 }
+@mixin line-end($width: 40px) {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  &::after {
+    content: "";
+    @include line($width);
+  }
+  margin-inline-start: -$width - 5px;
+}
 
 // FONT
 @mixin font-eyebrow {
   font-family: $sans;
   font-size: 14px;
   letter-spacing: 2px;
+  text-transform: uppercase;
   font-weight: 400;
+  line-height: 1.4;
 }
 @mixin font-headline {
   font-family: $serif;
@@ -111,8 +122,14 @@ $columns: 26;
 }
 @mixin font-index {
   font-family: $sans;
-  font-size: 12px;
+  font-size: 14px;
+  text-transform: uppercase;
   line-height: 1.4;
+}
+@mixin font-index-title {
+  font-family: $serif;
+  font-size: 16px;
+  text-transform: none;
 }
 // ------------------
 

@@ -2,7 +2,8 @@ export interface Section {
   __typename: string;
   sys: { id: string };
   titulo: string;
-  section?: string;
+  section: string;
+  slug: string;
 }
 
 export interface Issue {

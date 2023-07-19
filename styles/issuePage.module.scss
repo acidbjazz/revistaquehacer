@@ -41,25 +41,35 @@
   h2 {
     @include vars.eyebrow;
   }
-  ul {
+  .index {
     @include vars.wrap(5);
-    list-style-type: none;
     margin-block-start: 80px;
-    @include vars.font-index;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    align-items: baseline;
     color: vars.$gray700;
-    li {
-      border-block-end: 1px solid;
-      a {
-        color: inherit;
-        text-decoration: none;
-        padding-block: 10px;
-        display: block;
-        h3 {
-          color: vars.$gray700;
-        }
-        &:hover h3 {
-          color: black;
-        }
+    @include vars.font-index;
+    .section {
+      grid-column: 1 / 4;
+      justify-self: end;
+      padding-block: 10px;
+      padding-inline-end: 5px;
+      text-transform: uppercase;
+      @include vars.line-end;
+    }
+    .article {
+      grid-column: 4 / -1;
+      text-decoration: none;
+      color: inherit;
+      padding-block: 10px;
+      border-block-end: 1px solid vars.$gray300;
+      &:hover {
+        color: black;
+        border-color: black;
+      }
+      span {
+        @include vars.font-index-title;
+        color: black;
       }
     }
   }

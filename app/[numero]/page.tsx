@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { getIssue, getIssues } from "@/lib/cms";
+import { getArticle, getIssue, getIssues } from "@/lib/cms";
 import { formatAuthors } from "@/lib/utils";
 
 interface IssuePage {
@@ -43,28 +43,20 @@ export default async function IssuePage({ params }: IssuePage) {
       </section>
       <section className={styles.contents}>
         <h2>CONTENIDO</h2>
-        <ul>
-          {contents.map((item: any) => {
-            const xyz = item.__typename == "Seccion" || (
-              <li key={item.sys.id}>
-                {/* <Image
-                  className={styles.cover}
-                  src={item.portada.url}
-                  alt="cover"
-                  width={960}
-                  height={1080}
-                  sizes="100vw"
-                /> */}
+        <div className={styles.index}>
+          {contents.map(async (item) => {
+            if (item.__typename === "Seccion") {
+              return <div className={styles.section}>{item.titulo}</div>;
+            } else {
+              const article = await getArticle(item.slug);
+              return (
                 <Link href={`./${numero}/${item.slug}`} className={styles.article}>
-                  <h3>{item.titulo}</h3>
-                  <div>{item.section}</div>
-                  {/* <span>{formatAuthors(authors)}</span> */}
+                  <span>{item.titulo}</span> / {formatAuthors(article.autorCollection.items)}
                 </Link>
-              </li>
-            );
-            return xyz;
+              );
+            }
           })}
-        </ul>
+        </div>
       </section>
     </>
   );
