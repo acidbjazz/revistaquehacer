@@ -46,9 +46,9 @@
     margin-block-start: 80px;
     [data-footnotes] {
       margin-block-start: 80px;
-      padding-block-start: 80px;
+      padding-block-start: 40px;
       @include vars.footnotes;
-      border-block-start: 1px solid vars.$gray700;
+      border-block-start: 1px solid vars.$gray300;
     }
   }
 }

@@ -3,7 +3,7 @@
 .footer {
   @include vars.grid-system;
   @include vars.font-tiny;
-  background: vars.$gray700;
+  background: vars.$gray800;
   color: white;
   text-align: center;
   margin-block-start: 160px;
