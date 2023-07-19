@@ -50,7 +50,7 @@
     color: vars.$gray700;
     @include vars.font-index;
     .section {
-      grid-column: 1 / 4;
+      grid-column: 1 / 5;
       justify-self: end;
       padding-block: 10px;
       padding-inline-end: 5px;
@@ -58,7 +58,7 @@
       @include vars.line-end;
     }
     .article {
-      grid-column: 4 / -1;
+      grid-column: 5 / -1;
       text-decoration: none;
       color: inherit;
       padding-block: 10px;
@@ -70,6 +70,43 @@
       span {
         @include vars.font-index-title;
         color: black;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .contents {
+    .index {
+      @include vars.wrap(3);
+      grid-template-columns: repeat(20, 1fr);
+      .section {
+        grid-column: 1 / 6;
+        @include vars.line-start;
+        margin-inline-start: 0;
+        &:after {
+          content: none;
+        }
+      }
+      .article {
+        grid-column: 6 / -1;
+      }
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .contents {
+    .index {
+      @include vars.wrap(2);
+      grid-template-columns: 1fr;
+      .section {
+        grid-column: 1;
+        justify-self: start;
+      }
+      .article {
+        grid-column: 1;
+        border: none;
       }
     }
   }

@@ -252,6 +252,9 @@ $columns: 26;
   @include font-abstract;
   text-align: center;
   color: $gray700;
+  @media (max-width: 1200px) {
+    @include wrap(3);
+  }
 }
 @mixin card-title-big {
   @include wrap(3);
