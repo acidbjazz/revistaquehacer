@@ -24,3 +24,11 @@
     }
   }
 }
+
+@media (max-width: 900px) {
+  .footer {
+    .content {
+      @include vars.wrap(3);
+    }
+  }
+}

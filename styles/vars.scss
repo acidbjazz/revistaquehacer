@@ -74,6 +74,10 @@ $columns: 26;
   text-transform: uppercase;
   font-weight: 400;
   line-height: 1.4;
+  @media (max-width: 900px) {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
 }
 @mixin font-headline {
   font-family: $serif;
@@ -81,6 +85,9 @@ $columns: 26;
   line-height: 1.2;
   letter-spacing: -1px;
   font-weight: 400;
+  @media (max-width: 900px) {
+    font-size: 32px;
+  }
 }
 @mixin font-subtitle {
   font-family: $sans;
@@ -93,22 +100,35 @@ $columns: 26;
   font-style: normal;
   text-transform: uppercase;
   font-weight: 500;
+  @media (max-width: 900px) {
+    font-size: 14px;
+  }
 }
 @mixin font-bio {
   font-family: $sans;
   font-size: 14px;
   font-weight: 400;
+  @media (max-width: 900px) {
+    font-size: 13px;
+  }
 }
 @mixin font-cover-credits {
   font-family: $sans;
   font-size: 14px;
   font-weight: 400;
+  @media (max-width: 900px) {
+    font-size: 12px;
+  }
 }
 @mixin font-body {
   font-family: $sans;
   font-size: 18px;
   line-height: 1.6;
   font-weight: 300;
+  @media (max-width: 900px) {
+    font-size: 16px;
+    line-height: 1.4;
+  }
 }
 @mixin font-footnotes {
   font-family: $sans;
@@ -119,6 +139,9 @@ $columns: 26;
   font-family: $sans;
   font-size: 16px;
   line-height: 1.4;
+  @media (max-width: 900px) {
+    font-size: 14px;
+  }
 }
 @mixin font-index {
   font-family: $sans;
@@ -132,12 +155,6 @@ $columns: 26;
   text-transform: none;
 }
 // ------------------
-
-@mixin font-title-large {
-  font-family: $italic;
-  font-size: 40px;
-  line-height: 1.2;
-}
 
 @mixin font-tiny {
   font-family: $sans;
@@ -161,7 +178,7 @@ $columns: 26;
   color: black;
   text-wrap: balance;
   @media (max-width: 900px) {
-    @include wrap(1);
+    @include wrap(2);
   }
 }
 @mixin subtitle {
@@ -218,6 +235,9 @@ $columns: 26;
     font-family: $serif;
     font-size: 32px;
     margin-block-start: 50px;
+    @media (max-width: 900px) {
+      font-size: 24px;
+    }
   }
   @media (max-width: 1200px) {
     @include wrap(5);
@@ -252,8 +272,11 @@ $columns: 26;
   @include font-abstract;
   text-align: center;
   color: $gray700;
-  @media (max-width: 1200px) {
+  @media (max-width: 900px) {
     @include wrap(3);
+  }
+  @media (max-width: 600px) {
+    @include wrap(1);
   }
 }
 @mixin card-title-big {
@@ -263,10 +286,16 @@ $columns: 26;
   color: black;
   text-wrap: balance;
   font-size: 32px;
+  @media (max-width: 900px) {
+    font-size: 24px;
+  }
 }
 @mixin card-title-small {
   @include font-headline;
   color: black;
   text-wrap: balance;
   font-size: 24px;
+  @media (max-width: 900px) {
+    font-size: 20px;
+  }
 }

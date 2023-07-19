@@ -55,6 +55,9 @@
 
 @media (max-width: 1200px) {
   .article {
+    .authors {
+      @include vars.wrap(4);
+    }
     img {
       @include vars.wrap(3);
     }
@@ -63,6 +66,9 @@
 
 @media (max-width: 900px) {
   .article {
+    .authors {
+      @include vars.wrap(2);
+    }
     img {
       @include vars.wrap(1);
     }
