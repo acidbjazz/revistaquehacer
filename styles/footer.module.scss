@@ -3,14 +3,18 @@
 .footer {
   @include vars.grid-system;
   @include vars.font-tiny;
-  background: vars.$gray900;
+  background: vars.$gray700;
   color: white;
   text-align: center;
   margin-block-start: 160px;
   .content {
-    @include vars.wrap(6);
-    padding-block: 160px 80px;
+    @include vars.wrap(7);
+    padding-block: 120px 80px;
+    svg {
+      fill: white;
+    }
     .data {
+      margin-block-start: 80px;
       a {
         color: inherit;
       }

@@ -8,7 +8,6 @@ import SVG from "@/components/svg";
 
 export default function Header() {
   const params = useParams();
-  console.log(params);
   const issue = params.slug ? <div className={styles.issue}>{params.numero}</div> : null;
   return (
     <Link href={`/${params.slug ? params.numero : ""}`} className={styles.logo}>

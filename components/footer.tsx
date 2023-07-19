@@ -11,10 +11,8 @@ export default async function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.content}>
+        <SVG name="logoQD" width={200} />
         <ReactMarkdown className={styles.data}>{data.pie}</ReactMarkdown>
-        {/* <Link href="/" className={styles.logo}>
-          <SVG name="logoQD" width={140} />
-        </Link> */}
         <div className={styles.copy}>© {year} Revista Quehacer.</div>
       </div>
     </footer>

@@ -6,10 +6,7 @@ import Logo from "@/components/logo";
 export default function Header() {
   return (
     <header className={styles.header}>
-      {/* <Link href="/"> */}
-      {/* <SVG name="logoQ" width={34} /> */}
       <Logo />
-      {/* </Link> */}
     </header>
   );
 }
