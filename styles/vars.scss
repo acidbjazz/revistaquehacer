@@ -150,6 +150,9 @@ $columns: 26;
   @include font-eyebrow;
   text-align: center;
   color: $gray700;
+  @media (max-width: 1200px) {
+    @include wrap(7);
+  }
 }
 @mixin headline {
   @include wrap(3);
@@ -157,8 +160,8 @@ $columns: 26;
   text-align: center;
   color: black;
   text-wrap: balance;
-  @media only screen and (max-width: 600px) {
-    color: blue;
+  @media (max-width: 900px) {
+    @include wrap(1);
   }
 }
 @mixin subtitle {
@@ -167,6 +170,12 @@ $columns: 26;
   color: $gray700;
   @include line-inline(40px);
   text-wrap: balance;
+  @media (max-width: 1200px) {
+    @include wrap(5);
+  }
+  @media (max-width: 900px) {
+    @include wrap(3);
+  }
 }
 @mixin author {
   @include font-author;
@@ -181,6 +190,16 @@ $columns: 26;
   @include font-cover-credits;
   color: $gray700;
   @include line-start(40px);
+  @media (max-width: 1200px) {
+    @include wrap(5);
+  }
+  @media (max-width: 900px) {
+    @include wrap(3);
+  }
+  @media (max-width: 600px) {
+    @include wrap(2);
+    margin-inline-start: 0;
+  }
 }
 @mixin body {
   @include wrap(7);
@@ -193,12 +212,21 @@ $columns: 26;
   }
   strong,
   a {
-    font-weight: 500;
+    font-weight: 400;
   }
   h3 {
     font-family: $serif;
     font-size: 32px;
     margin-block-start: 50px;
+  }
+  @media (max-width: 1200px) {
+    @include wrap(5);
+  }
+  @media (max-width: 900px) {
+    @include wrap(3);
+  }
+  @media (max-width: 600px) {
+    @include wrap(2);
   }
 }
 @mixin footnotes {
@@ -238,12 +266,4 @@ $columns: 26;
   color: black;
   text-wrap: balance;
   font-size: 24px;
-}
-
-// ------------------
-
-@mixin title-large {
-  @include wrap(4);
-  @include font-hero;
-  text-align: center;
 }

@@ -52,3 +52,19 @@
     }
   }
 }
+
+@media (max-width: 1200px) {
+  .article {
+    img {
+      @include vars.wrap(3);
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .article {
+    img {
+      @include vars.wrap(1);
+    }
+  }
+}
