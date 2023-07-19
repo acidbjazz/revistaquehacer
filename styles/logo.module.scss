@@ -1,0 +1,20 @@
+@use "@/styles/vars";
+
+.logo {
+  display: flex;
+  text-decoration: none;
+  color: black;
+  gap: 5px;
+  .issue {
+    display: flex;
+    font-size: 20px;
+    font-weight: 700;
+    @include vars.line-start(40px);
+    margin-inline-start: 0px;
+    font-family: vars.$serif;
+    font-size: 24px;
+    &::before {
+      margin-block-start: 5px;
+    }
+  }
+}

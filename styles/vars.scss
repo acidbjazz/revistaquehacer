@@ -166,6 +166,7 @@ $columns: 26;
   @include font-subtitle;
   color: $gray700;
   @include line-inline(40px);
+  text-wrap: balance;
 }
 @mixin author {
   @include font-author;
@@ -223,6 +224,20 @@ $columns: 26;
   @include font-abstract;
   text-align: center;
   color: $gray700;
+}
+@mixin card-title-big {
+  @include wrap(3);
+  @include font-headline;
+  text-align: center;
+  color: black;
+  text-wrap: balance;
+  font-size: 32px;
+}
+@mixin card-title-small {
+  @include font-headline;
+  color: black;
+  text-wrap: balance;
+  font-size: 24px;
 }
 
 // ------------------

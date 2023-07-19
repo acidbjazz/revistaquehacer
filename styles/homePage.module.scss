@@ -33,12 +33,8 @@
     margin-block-start: 40px;
   }
   .title {
-    @include vars.wrap(6);
-    @include vars.font-headline;
-    color: inherit;
+    @include vars.card-title-big;
     text-decoration: none;
-    text-align: center;
-    font-size: 32px;
     margin-block-start: 20px;
   }
   .abstract {
@@ -68,12 +64,13 @@
         border-radius: 4px;
       }
       .date {
-        @include vars.font-eyebrow;
+        @include vars.eyebrow;
+        text-align: start;
         margin-block-start: 10px;
       }
       h3 {
-        font-size: 24px;
-        font-style: italic;
+        @include vars.card-title-small;
+        margin-block-start: 5px;
       }
     }
   }
