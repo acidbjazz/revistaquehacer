@@ -1,4 +1,4 @@
-import { Article, Issue, Data } from "./interfaces";
+import { Article, Issue, Data, Section } from "./interfaces";
 
 const API_URL = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`;
 const API_AUTH = `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`;
@@ -57,7 +57,7 @@ export async function getIssue(numero: string): Promise<Issue> {
         portada { url }
         creditos
         presentacion
-        indiceCollection( limit:50 ) {
+        indiceCollection(limit: 50) {
           items {
             __typename
             ... on Seccion {
@@ -76,7 +76,17 @@ export async function getIssue(numero: string): Promise<Issue> {
     }
   }`;
   const { data } = await graphqlClient(query);
-  return data.edicionCollection.items[0];
+  const issue = data.edicionCollection.items[0];
+  const contents = issue.indiceCollection.items;
+  let section = "";
+  contents.map((item: Section | Article) => {
+    if (item.__typename === "Seccion") {
+      section = item.titulo;
+    } else {
+      item.section = section;
+    }
+  });
+  return issue;
 }
 
 // export async function getArticlesSlug(): Promise<Article[]> {

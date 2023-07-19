@@ -30,9 +30,8 @@
     @include vars.eyebrow;
   }
   .body {
-    @include vars.wrap(6);
-    margin-block-start: 60px;
-    font-size: 18px;
+    @include vars.body;
+    margin-block-start: 80px;
   }
 }
 
@@ -43,11 +42,11 @@
     @include vars.eyebrow;
   }
   ul {
-    @include vars.wrap(6);
+    @include vars.wrap(5);
     list-style-type: none;
     margin-block-start: 80px;
-    padding-inline-start: 0;
-    font-size: 14px;
+    @include vars.font-index;
+    color: vars.$gray700;
     li {
       border-block-end: 1px solid;
       a {
@@ -55,6 +54,12 @@
         text-decoration: none;
         padding-block: 10px;
         display: block;
+        h3 {
+          color: vars.$gray700;
+        }
+        &:hover h3 {
+          color: black;
+        }
       }
     }
   }

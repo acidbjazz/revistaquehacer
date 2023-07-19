@@ -46,7 +46,6 @@ $columns: 26;
     @include line($width);
   }
 }
-
 @mixin line-start($width: 40px) {
   display: flex;
   align-items: center;
@@ -96,7 +95,7 @@ $columns: 26;
 }
 @mixin font-body {
   font-family: $sans;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.6;
   font-weight: 300;
 }
@@ -105,16 +104,22 @@ $columns: 26;
   font-size: 14px;
   font-weight: 400;
 }
+@mixin font-abstract {
+  font-family: $sans;
+  font-size: 16px;
+  line-height: 1.4;
+}
+@mixin font-index {
+  font-family: $sans;
+  font-size: 12px;
+  line-height: 1.4;
+}
 // ------------------
 
 @mixin font-title-large {
   font-family: $italic;
   font-size: 40px;
   line-height: 1.2;
-}
-@mixin font-abstract {
-  font-family: $sans;
-  line-height: 1.4;
 }
 
 @mixin font-tiny {
@@ -135,6 +140,9 @@ $columns: 26;
   text-align: center;
   color: black;
   text-wrap: balance;
+  @media only screen and (max-width: 600px) {
+    color: blue;
+  }
 }
 @mixin subtitle {
   @include wrap(7);
@@ -183,12 +191,21 @@ $columns: 26;
   a {
     font-weight: 400;
   }
-  ol > li {
-    margin-block-start: 10px;
-    &:first-child {
-      margin-block-start: 0;
+  ol {
+    padding-inline-start: 16px;
+    & > li {
+      margin-block-start: 10px;
+      &:first-child {
+        margin-block-start: 0;
+      }
     }
   }
+}
+@mixin abstract {
+  @include wrap(5);
+  @include font-abstract;
+  text-align: center;
+  color: $gray700;
 }
 
 // ------------------
@@ -196,10 +213,5 @@ $columns: 26;
 @mixin title-large {
   @include wrap(4);
   @include font-hero;
-  text-align: center;
-}
-@mixin abstract {
-  @include wrap(6);
-  @include font-abstract;
   text-align: center;
 }

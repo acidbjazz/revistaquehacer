@@ -6,6 +6,7 @@ import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getIssue, getIssues } from "@/lib/cms";
+import { formatAuthors } from "@/lib/utils";
 
 interface IssuePage {
   params: {
@@ -56,6 +57,8 @@ export default async function IssuePage({ params }: IssuePage) {
                 /> */}
                 <Link href={`./${numero}/${item.slug}`} className={styles.article}>
                   <h3>{item.titulo}</h3>
+                  <div>{item.section}</div>
+                  {/* <span>{formatAuthors(authors)}</span> */}
                 </Link>
               </li>
             );

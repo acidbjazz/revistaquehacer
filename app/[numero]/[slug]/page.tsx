@@ -20,7 +20,7 @@ export default async function ArticlePage({ params }: ArticlePage) {
   return (
     <>
       <article className={styles.article}>
-        <div className={styles.type}>ENTREVISTA</div>
+        {/* <div className={styles.type}>ENTREVISTA</div> */}
         <h1>{article.titulo}</h1>
         {article.subtitulo && <h2> {article.subtitulo} </h2>}
         <div className={styles.authors}>

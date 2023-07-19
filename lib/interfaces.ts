@@ -1,3 +1,10 @@
+export interface Section {
+  __typename: string;
+  sys: { id: string };
+  titulo: string;
+  section?: string;
+}
+
 export interface Issue {
   sys: { id: string };
   numero: number;
@@ -9,10 +16,11 @@ export interface Issue {
   colorSecundario: string;
   creditos: string;
   presentacion: string;
-  indiceCollection: any;
+  indiceCollection: { items: (Section | Article)[] };
 }
 
 export interface Article {
+  __typename: string;
   sys: { id: string };
   titulo: string;
   slug: string;
@@ -21,6 +29,7 @@ export interface Article {
   portada: { url: string };
   creditosPortada: string;
   cuerpo: string;
+  section: string;
 }
 
 export interface Author {

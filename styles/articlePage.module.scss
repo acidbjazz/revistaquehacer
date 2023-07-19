@@ -7,7 +7,7 @@
   }
   h1 {
     @include vars.headline;
-    margin-block-start: 40px;
+    // margin-block-start: 40px;
   }
   h2 {
     @include vars.subtitle;
