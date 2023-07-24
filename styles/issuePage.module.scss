@@ -21,6 +21,7 @@
     margin-block-start: 80px;
     border-radius: 8px;
   }
+  display: none;
 }
 
 .introduction {
@@ -33,6 +34,7 @@
     @include vars.body;
     margin-block-start: 80px;
   }
+  display: none;
 }
 
 .contents {
