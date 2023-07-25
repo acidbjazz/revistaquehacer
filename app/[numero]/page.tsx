@@ -25,7 +25,9 @@ export default async function IssuePage({ params }: IssuePage) {
           Nº {numero} {issue.fecha}
         </div>
         <h1>{issue.titulo}</h1>
-        <ReactMarkdown className={styles.abstract}>{issue.sumilla}</ReactMarkdown>
+        {issue.sumilla && (
+          <ReactMarkdown className={styles.abstract}>{issue.sumilla}</ReactMarkdown>
+        )}
         <Image
           className={styles.cover}
           src={issue.portada.url}
