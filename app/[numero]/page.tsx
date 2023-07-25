@@ -20,6 +20,21 @@ export default async function IssuePage({ params }: IssuePage) {
   const contents = issue.indiceCollection.items;
   return (
     <>
+      <section className={styles.hero}>
+        <div className={styles.date}>
+          Nº {numero} {issue.fecha}
+        </div>
+        <h1>{issue.titulo}</h1>
+        <ReactMarkdown className={styles.abstract}>{issue.sumilla}</ReactMarkdown>
+        <Image
+          className={styles.cover}
+          src={issue.portada.url}
+          alt="cover"
+          width={1920}
+          height={1080}
+          sizes="100vw"
+        />
+      </section>
       <section className={styles.contents}>
         <h2>CONTENIDO</h2>
         <div className={styles.index}>
@@ -44,21 +59,6 @@ export default async function IssuePage({ params }: IssuePage) {
             }
           })}
         </div>
-      </section>
-      <section className={styles.hero}>
-        <div className={styles.date}>
-          Nº {numero} {issue.fecha}
-        </div>
-        <h1>{issue.titulo}</h1>
-        <ReactMarkdown className={styles.abstract}>{issue.sumilla}</ReactMarkdown>
-        <Image
-          className={styles.cover}
-          src={issue.portada.url}
-          alt="cover"
-          width={1920}
-          height={1080}
-          sizes="100vw"
-        />
       </section>
       <section className={styles.introduction}>
         <h2>PRESENTACIÓN</h2>
