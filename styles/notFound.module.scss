@@ -1,0 +1,12 @@
+@use "@/styles/vars";
+
+.notFound {
+  @include vars.grid-system;
+  h1 {
+    @include vars.headline;
+  }
+  a {
+    @include vars.subtitle;
+    margin-block-start: 80px;
+  }
+}
