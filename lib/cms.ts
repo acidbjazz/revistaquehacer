@@ -79,11 +79,13 @@ export async function getIssue(numero: string): Promise<Issue> {
   const issue = data.edicionCollection.items[0];
   const contents = issue.indiceCollection.items;
   let section = "";
-  contents.map((item: Section | Article) => {
-    if (item.__typename === "Seccion") {
-      section = item.titulo;
-    } else {
-      item.section = section;
+  contents.map((item: Section | Article | null) => {
+    if (item) {
+      if (item.__typename === "Seccion") {
+        section = item.titulo;
+      } else {
+        item.section = section;
+      }
     }
   });
   return issue;

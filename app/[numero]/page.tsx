@@ -41,23 +41,25 @@ export default async function IssuePage({ params }: IssuePage) {
         <h2>CONTENIDO</h2>
         <div className={styles.index}>
           {contents.map(async (item) => {
-            if (item.__typename === "Seccion") {
-              return (
-                <div className={styles.section} key={item.sys.id}>
-                  {item.titulo}
-                </div>
-              );
-            } else {
-              const article = await getArticle(item.slug);
-              return (
-                <Link
-                  href={`./${numero}/${item.slug}`}
-                  className={styles.article}
-                  key={item.sys.id}
-                >
-                  <span>{item.titulo}</span> / {formatAuthors(article.autorCollection.items)}
-                </Link>
-              );
+            if (item) {
+              if (item.__typename === "Seccion") {
+                return (
+                  <div className={styles.section} key={item.sys.id}>
+                    {item.titulo}
+                  </div>
+                );
+              } else {
+                const article = await getArticle(item.slug);
+                return (
+                  <Link
+                    href={`./${numero}/${item.slug}`}
+                    className={styles.article}
+                    key={item.sys.id}
+                  >
+                    <span>{item.titulo}</span> / {formatAuthors(article.autorCollection.items)}
+                  </Link>
+                );
+              }
             }
           })}
         </div>

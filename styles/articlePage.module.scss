@@ -31,7 +31,7 @@
       }
     }
   }
-  img {
+  .cover {
     @include vars.wrap(5);
     inline-size: 100%;
     block-size: auto;

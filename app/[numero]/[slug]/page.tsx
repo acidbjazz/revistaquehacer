@@ -33,7 +33,13 @@ export default async function ArticlePage({ params }: ArticlePage) {
             );
           })}
         </div>
-        <Image src={article.portada.url} width={960} height={1080} alt={article.titulo} />
+        <Image
+          className={styles.cover}
+          src={article.portada.url}
+          width={960}
+          height={1080}
+          alt={article.titulo}
+        />
         {article.creditosPortada && (
           <div className={styles.coverCredits}> {article.creditosPortada}</div>
         )}
