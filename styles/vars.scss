@@ -248,6 +248,9 @@ $columns: 26;
       font-style: normal;
     }
   }
+  li {
+    margin-block-start: 30px;
+  }
   @media (max-width: 1200px) {
     @include wrap(5);
   }
