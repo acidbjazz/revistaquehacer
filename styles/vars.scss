@@ -7,8 +7,8 @@ $gray300: #d8e2ed;
 $gray400: #b5bfca;
 $gray500: #97a0ab;
 $gray600: #6e7781;
-$gray700: #5a636d;
-$gray800: #3b444d;
+$gray800: #5a636d;
+$gray700: #3b444d;
 $gray900: #1a232b;
 
 // DIMENSIONS
@@ -77,6 +77,16 @@ $columns: 26;
   @media (max-width: 900px) {
     font-size: 12px;
     letter-spacing: 1px;
+  }
+}
+@mixin font-intro {
+  font-family: $serif;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  font-weight: 400;
+  @media (max-width: 900px) {
+    font-size: 28px;
   }
 }
 @mixin font-headline {
@@ -169,6 +179,16 @@ $columns: 26;
   color: $gray700;
   @media (max-width: 1200px) {
     @include wrap(7);
+  }
+}
+@mixin intro {
+  @include wrap(3);
+  @include font-intro;
+  text-align: center;
+  color: black;
+  text-wrap: balance;
+  @media (max-width: 900px) {
+    @include wrap(2);
   }
 }
 @mixin headline {

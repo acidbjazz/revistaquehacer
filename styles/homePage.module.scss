@@ -6,7 +6,7 @@
     @include vars.eyebrow;
   }
   h1 {
-    @include vars.headline;
+    @include vars.intro;
     margin-block-start: 40px;
   }
 }
