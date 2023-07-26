@@ -13,9 +13,7 @@ export interface Issue {
   titulo: string;
   sumilla: string;
   portada: { url: string };
-  colorPrimario: string;
-  colorSecundario: string;
-  creditos: string;
+  creditosPortada: string;
   presentacion: string;
   indiceCollection: { items: (Section | Article)[] };
 }

@@ -5,6 +5,7 @@ const API_AUTH = `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`;
 
 async function graphqlClient(query: string): Promise<any> {
   const response = await fetch(API_URL, {
+    next: { revalidate: 30 },
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -55,7 +56,7 @@ export async function getIssue(numero: string): Promise<Issue> {
         titulo
         sumilla
         portada { url }
-        creditos
+        creditosPortada
         presentacion
         indiceCollection(limit: 50) {
           items {

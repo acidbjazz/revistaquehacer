@@ -58,7 +58,7 @@
     .authors {
       @include vars.wrap(4);
     }
-    img {
+    .cover {
       @include vars.wrap(3);
     }
   }
@@ -66,11 +66,22 @@
 
 @media (max-width: 900px) {
   .article {
+    h1 {
+      // margin-block-start: 20px;
+    }
     .authors {
       @include vars.wrap(2);
+      margin-block-start: 20px;
     }
-    img {
+    .cover {
       @include vars.wrap(1);
+      margin-block-start: 40px;
+    }
+    .coverCredits {
+      margin-block-start: 20px;
+    }
+    .body {
+      margin-block-start: 40px;
     }
   }
 }

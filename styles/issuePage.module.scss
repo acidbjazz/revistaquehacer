@@ -20,17 +20,38 @@
     margin-inline: auto;
     margin-block-start: 80px;
   }
-}
-
-.introduction {
-  @include vars.grid-system;
-  margin-block-start: 160px;
-  h2 {
-    @include vars.eyebrow;
-  }
-  .body {
-    @include vars.body;
-    margin-block-start: 80px;
+  .coverCredits {
+    @include vars.wrap(7);
+    @include vars.font-cover-credits;
+    color: vars.$gray700;
+    margin-block-start: 40px;
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    position: relative;
+    &::before {
+      content: "";
+      display: block;
+      background: vars.$gray700;
+      block-size: 1px;
+      inline-size: 40px;
+      position: absolute;
+      left: -45px;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    @media (max-width: 1200px) {
+      @include vars.wrap(5);
+    }
+    @media (max-width: 900px) {
+      @include vars.wrap(3);
+    }
+    @media (max-width: 600px) {
+      @include vars.wrap(2);
+      margin-inline-start: 45px;
+    }
   }
 }
 
@@ -74,39 +95,71 @@
   }
 }
 
+.introduction {
+  @include vars.grid-system;
+  margin-block-start: 160px;
+  h2 {
+    @include vars.eyebrow;
+  }
+  .body {
+    @include vars.body;
+    margin-block-start: 80px;
+  }
+}
+
 @media (max-width: 1200px) {
+  .hero {
+    .cover {
+      height: 50vh;
+      object-fit: cover;
+    }
+  }
   .contents {
     .index {
       @include vars.wrap(3);
-      grid-template-columns: repeat(20, 1fr);
+      grid-template-columns: repeat(1, 1fr);
       .section {
-        grid-column: 1 / 6;
+        grid-column: 1;
+        justify-self: start;
         @include vars.line-start;
         margin-inline-start: 0;
+        margin-block-start: 30px;
         &:after {
           content: none;
         }
+        &:first-child {
+          margin-block-start: 0;
+        }
       }
       .article {
-        grid-column: 6 / -1;
+        grid-column: 1;
       }
     }
   }
 }
 
 @media (max-width: 900px) {
+  .hero {
+    h1 {
+      margin-block-start: 20px;
+    }
+    .cover {
+      margin-block-start: 40px;
+    }
+    .coverCredits {
+      margin-block-start: 20px;
+    }
+  }
   .contents {
+    margin-block-start: 100px;
     .index {
-      @include vars.wrap(2);
-      grid-template-columns: 1fr;
-      .section {
-        grid-column: 1;
-        justify-self: start;
-      }
-      .article {
-        grid-column: 1;
-        border: none;
-      }
+      margin-block-start: 40px;
+    }
+  }
+  .introduction {
+    margin-block-start: 100px;
+    .body {
+      margin-block-start: 40px;
     }
   }
 }

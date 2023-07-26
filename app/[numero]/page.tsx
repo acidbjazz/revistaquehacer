@@ -36,6 +36,7 @@ export default async function IssuePage({ params }: IssuePage) {
           height={1080}
           sizes="100vw"
         />
+        <ReactMarkdown className={styles.coverCredits}>{issue.creditosPortada}</ReactMarkdown>
       </section>
       <section className={styles.contents}>
         <h2>CONTENIDO</h2>

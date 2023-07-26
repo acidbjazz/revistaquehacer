@@ -75,10 +75,35 @@
   }
 }
 
+@media (max-width: 1200px) {
+  .lastIssue {
+    .cover {
+      img {
+        height: 50vh;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
 @media (max-width: 900px) {
+  .hero {
+    h1 {
+      margin-block-start: 20px;
+    }
+  }
+  .lastIssue {
+    margin-block-start: 100px;
+    .cover {
+      margin-block-start: 40px;
+    }
+  }
   .previousIssues {
+    margin-block-start: 100px;
     .grid {
+      margin-block-start: 40px;
       @include vars.wrap(1);
+      grid-template-columns: 1fr;
     }
   }
 }
