@@ -2,6 +2,7 @@ import "@/styles/normalize.css";
 import "@/styles/globals.scss";
 import styles from "@/styles/rootLayout.module.scss";
 
+import Script from "next/script";
 import { Metadata } from "next";
 import { sans, serif } from "@/lib/fonts";
 import Header from "@/components/header";
@@ -21,6 +22,15 @@ export default function RootLayout({ children }: RootLayout) {
           <Footer />
         </div>
       </body>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-E4LDTBPJTL" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-E4LDTBPJTL');
+        `}
+      </Script>
     </html>
   );
 }
