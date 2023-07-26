@@ -186,7 +186,6 @@ $columns: 26;
   @include font-intro;
   text-align: center;
   color: black;
-  text-wrap: balance;
   @media (max-width: 900px) {
     @include wrap(2);
   }
