@@ -51,18 +51,16 @@ export default async function ArticlePage({ params }: ArticlePage) {
   );
 }
 
-// export async function generateStaticParams(slug: any) {
-//   // const { numero, slug } = params;
-//   console.log(slug);
-//   // const issue = await getIssue(numero);
-//   // console.log("holi: ", numero);
-//   // const contents = issue.indiceCollection.items;
-//   // console.log(contents);
-//   const articles = await getArticlesSlug();
-//   return articles.map((article) => ({ slug: article.slug }));
-// }
+export async function generateStaticParams) {
+  // const articles = await getArticlesSlug();
+  // return articles.map((article) => ({ slug: article.slug }));
+  return [
+    { numero: '11', slug: 'el-estallido-social-2022-2023' },
+    { numero: '11', slug: 'crisis-y-movilizacion-indigena-retorno-desde-lo-cholo-a-lo-indio' },
+  ]
+}
 
-// export const dynamicParams = false;
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }: ArticlePage): Promise<Metadata> {
   const { slug } = params;
