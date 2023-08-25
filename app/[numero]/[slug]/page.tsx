@@ -51,13 +51,13 @@ export default async function ArticlePage({ params }: ArticlePage) {
   );
 }
 
-export async function generateStaticParams) {
+export async function generateStaticParams() {
   // const articles = await getArticlesSlug();
   // return articles.map((article) => ({ slug: article.slug }));
   return [
-    { numero: '11', slug: 'el-estallido-social-2022-2023' },
-    { numero: '11', slug: 'crisis-y-movilizacion-indigena-retorno-desde-lo-cholo-a-lo-indio' },
-  ]
+    { numero: "11", slug: "el-estallido-social-2022-2023" },
+    { numero: "11", slug: "crisis-y-movilizacion-indigena-retorno-desde-lo-cholo-a-lo-indio" },
+  ];
 }
 
 export const dynamicParams = false;
