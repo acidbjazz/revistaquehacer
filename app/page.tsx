@@ -30,9 +30,9 @@ export default async function HomePage() {
         <Link href={`./${lastIssue.numero}`} className={styles.title}>
           <h3>{lastIssue.titulo}</h3>
         </Link>
-        <ReactMarkdown remarkPlugins={[remarkGfm]} className={styles.abstract}>
-          {lastIssue.sumilla}
-        </ReactMarkdown>
+        {lastIssue.sumilla && (
+          <ReactMarkdown className={styles.abstract}>{lastIssue.sumilla}</ReactMarkdown>
+        )}
       </section>
       <section className={styles.previousIssues}>
         <h2>NÚMEROS ANTERIORES</h2>
