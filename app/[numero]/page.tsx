@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { Article, Section } from "@/lib/interfaces";
 import { getArticle, getIssue, getIssues } from "@/lib/cms";
 import { formatAuthors } from "@/lib/utils";
 
@@ -44,20 +45,23 @@ export default async function IssuePage({ params }: IssuePage) {
           {contents.map(async (item) => {
             if (item) {
               if (item.__typename === "Seccion") {
+                const itemSection = item as Section;
                 return (
                   <div className={styles.section} key={item.sys.id}>
-                    {item.titulo}
+                    {itemSection.titulo}
                   </div>
                 );
               } else {
-                const article = await getArticle(item.slug);
+                const itemArticle = item as Article;
+                const article = await getArticle(itemArticle.slug);
                 return (
                   <Link
-                    href={`./${numero}/${item.slug}`}
+                    href={`./${numero}/${itemArticle.slug}`}
                     className={styles.article}
-                    key={item.sys.id}
+                    key={itemArticle.sys.id}
                   >
-                    <span>{item.titulo}</span> / {formatAuthors(article.autorCollection.items)}
+                    <span>{itemArticle.titulo}</span> /{" "}
+                    {formatAuthors(article.autorCollection.items)}
                   </Link>
                 );
               }

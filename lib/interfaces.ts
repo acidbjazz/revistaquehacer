@@ -2,8 +2,6 @@ export interface Section {
   __typename: string;
   sys: { id: string };
   titulo: string;
-  section: string;
-  slug: string;
 }
 
 export interface Issue {
@@ -11,7 +9,7 @@ export interface Issue {
   numero: number;
   fecha: string;
   titulo: string;
-  sumilla: string;
+  sumilla?: string;
   portada: { url: string };
   creditosPortada: string;
   presentacion: string;
@@ -26,12 +24,13 @@ export interface Article {
   subtitulo?: string;
   autorCollection: { items: Author[] };
   portada: { url: string };
-  creditosPortada: string;
+  creditosPortada?: string;
   cuerpo: string;
-  section: string;
+  section?: string;
 }
 
 export interface Author {
+  sys: { id: string };
   nombre: string;
   bio: string;
 }

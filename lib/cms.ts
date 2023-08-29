@@ -5,7 +5,7 @@ const API_AUTH = `Bearer ${process.env.CONTENTFUL_ACCESS_TOKEN}`;
 
 async function graphqlClient(query: string): Promise<any> {
   const response = await fetch(API_URL, {
-    next: { revalidate: 30 },
+    next: { revalidate: 20 },
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -18,7 +18,7 @@ async function graphqlClient(query: string): Promise<any> {
 
 export async function getData(): Promise<Data> {
   const query = `{
-    datosCollection {
+    datosCollection(limit: 1) {
       items {
         ultimoNumero
         issn
@@ -50,7 +50,7 @@ export async function getIssues(): Promise<Issue[]> {
 
 export async function getIssue(numero: string): Promise<Issue> {
   const query = `{
-    edicionCollection(where: {numero: ${numero}}) {
+    edicionCollection(where: {numero: ${numero}}, limit: 1) {
       items {
         fecha
         titulo
@@ -58,7 +58,7 @@ export async function getIssue(numero: string): Promise<Issue> {
         portada { url }
         creditosPortada
         presentacion
-        indiceCollection(limit: 50) {
+        indiceCollection(limit: 60) {
           items {
             __typename
             ... on Seccion {
@@ -79,16 +79,18 @@ export async function getIssue(numero: string): Promise<Issue> {
   const { data } = await graphqlClient(query);
   const issue = data.edicionCollection.items[0];
   const contents = issue.indiceCollection.items;
-  let section = "";
-  contents.map((item: Section | Article | null) => {
-    if (item) {
+  if (contents) {
+    let section = "";
+    contents.map((item: Section | Article) => {
       if (item.__typename === "Seccion") {
-        section = item.titulo;
+        const itemSection = item as Section;
+        section = itemSection.titulo;
       } else {
-        item.section = section;
+        const itemArticle = item as Article;
+        itemArticle.section = section;
       }
-    }
-  });
+    });
+  }
   return issue;
 }
 
@@ -106,13 +108,13 @@ export async function getIssue(numero: string): Promise<Issue> {
 
 export async function getArticle(slug: string): Promise<Article> {
   const query = `{
-    articuloCollection(where: {slug: "${slug}"}) {
+    articuloCollection(where: {slug: "${slug}"}, limit: 1) {
       items {
         sys { id }
         titulo
         slug
         subtitulo
-        autorCollection {
+        autorCollection(limit: 3) {
           items {
             nombre
             bio
@@ -127,3 +129,11 @@ export async function getArticle(slug: string): Promise<Article> {
   const { data } = await graphqlClient(query);
   return data.articuloCollection.items[0];
 }
+
+// export async function getArticleLocal(issue:string, slug:string): Promise<Article> {
+//   const issueObject = await getIssue(issue);
+//   //search slug in issueObject
+//   const article:Article = issueObject.indiceCollection.items.find((item as Article) => item.slug === slug);
+//   return article;
+
+// }
