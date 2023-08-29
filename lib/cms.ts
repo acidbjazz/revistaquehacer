@@ -79,15 +79,18 @@ export async function getIssue(numero: string): Promise<Issue> {
   const { data } = await graphqlClient(query);
   const issue = data.edicionCollection.items[0];
   const contents = issue.indiceCollection.items;
+  // console.log(contents);
   if (contents) {
     let section = "";
     contents.map((item: Section | Article) => {
-      if (item.__typename === "Seccion") {
-        const itemSection = item as Section;
-        section = itemSection.titulo;
-      } else {
-        const itemArticle = item as Article;
-        itemArticle.section = section;
+      if (item) {
+        if (item.__typename === "Seccion") {
+          const itemSection = item as Section;
+          section = itemSection.titulo;
+        } else {
+          const itemArticle = item as Article;
+          itemArticle.section = section;
+        }
       }
     });
   }
