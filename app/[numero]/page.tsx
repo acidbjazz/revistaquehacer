@@ -54,7 +54,6 @@ export default async function IssuePage({ params }: IssuePage) {
               } else {
                 const itemArticle = item as Article;
                 const article = await getArticle(itemArticle.slug);
-                console.log("article:", article);
                 return (
                   <Link
                     href={`./${numero}/${itemArticle.slug}`}
