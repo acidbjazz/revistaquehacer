@@ -92,6 +92,11 @@ export async function generateMetadata({ params }: IssuePage): Promise<Metadata>
   return {
     title: issue.titulo,
     openGraph: {
+      title: issue.titulo,
+      images: issue.portada.url,
+    },
+    twitter: {
+      title: issue.titulo,
       images: issue.portada.url,
     },
   };

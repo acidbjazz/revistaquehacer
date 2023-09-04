@@ -43,6 +43,23 @@ export const metadata: Metadata = {
   description:
     "Pensamiento crítico. Actualidad nacional e internacional. Opinión sobre política y cultura. Libros.",
   openGraph: {
+    title: {
+      template: "%s | Revista Quehacer",
+      default: "Revista Quehacer",
+    },
+    description:
+      "Pensamiento crítico. Actualidad nacional e internacional. Opinión sobre política y cultura. Libros.",
+    url: "https://revistaquehacer.com",
+    images: "/cover.jpg",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: {
+      template: "%s | Revista Quehacer",
+      default: "Revista Quehacer",
+    },
+    description:
+      "Pensamiento crítico. Actualidad nacional e internacional. Opinión sobre política y cultura. Libros.",
     images: "/cover.jpg",
   },
 };

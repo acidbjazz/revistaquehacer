@@ -5,6 +5,7 @@ import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getArticle } from "@/lib/cms";
+import { formatAuthors } from "@/lib/utils";
 
 interface ArticlePage {
   params: {
@@ -66,8 +67,15 @@ export async function generateMetadata({ params }: ArticlePage): Promise<Metadat
   const { slug } = params;
   const article = await getArticle(slug);
   return {
-    title: article.titulo,
+    title: {
+      absolute: article.titulo + " | " + formatAuthors(article.autorCollection.items),
+    },
     openGraph: {
+      title: article.titulo + " | " + formatAuthors(article.autorCollection.items),
+      images: article.portada.url,
+    },
+    twitter: {
+      title: article.titulo + " | " + formatAuthors(article.autorCollection.items),
       images: article.portada.url,
     },
   };
