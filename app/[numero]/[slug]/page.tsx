@@ -72,6 +72,7 @@ export async function generateMetadata({ params }: ArticlePage): Promise<Metadat
     },
     description: `Revista Quehacer Nº ${numero}`,
     openGraph: {
+      type: "website",
       title: {
         absolute: `${article.titulo} | ${formatAuthors(article.autorCollection.items)}`,
       },
@@ -80,6 +81,7 @@ export async function generateMetadata({ params }: ArticlePage): Promise<Metadat
       images: article.portada.url,
     },
     twitter: {
+      card: "summary_large_image",
       title: {
         absolute: `${article.titulo} | ${formatAuthors(article.autorCollection.items)}`,
       },
