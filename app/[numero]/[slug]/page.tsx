@@ -72,13 +72,17 @@ export async function generateMetadata({ params }: ArticlePage): Promise<Metadat
     },
     description: `Revista Quehacer Nº ${numero}`,
     openGraph: {
-      title: `${article.titulo} | ${formatAuthors(article.autorCollection.items)}`,
+      title: {
+        absolute: `${article.titulo} | ${formatAuthors(article.autorCollection.items)}`,
+      },
       description: `Revista Quehacer Nº ${numero}`,
       url: `/${numero}/${slug}`,
       images: article.portada.url,
     },
     twitter: {
-      title: `${article.titulo} | ${formatAuthors(article.autorCollection.items)}`,
+      title: {
+        absolute: `${article.titulo} | ${formatAuthors(article.autorCollection.items)}`,
+      },
       description: `Revista Quehacer Nº ${numero}`,
       images: article.portada.url,
     },
