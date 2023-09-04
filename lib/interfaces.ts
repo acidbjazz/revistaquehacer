@@ -32,7 +32,7 @@ export interface Article {
 export interface Author {
   sys: { id: string };
   nombre: string;
-  bio: string;
+  bio?: string;
 }
 
 export interface Data {

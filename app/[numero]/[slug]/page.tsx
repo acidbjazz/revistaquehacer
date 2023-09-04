@@ -24,11 +24,11 @@ export default async function ArticlePage({ params }: ArticlePage) {
         <h1>{article.titulo}</h1>
         {article.subtitulo && <h2> {article.subtitulo} </h2>}
         <div className={styles.authors}>
-          {authors.map((item, i) => {
+          {authors.map((author, i) => {
             return (
               <div className={styles.author} key={i}>
-                <address>{item.nombre}</address>
-                <p>{item.bio}</p>
+                <address>{author.nombre}</address>
+                {author.bio && <p>{author.bio}</p>}
               </div>
             );
           })}
