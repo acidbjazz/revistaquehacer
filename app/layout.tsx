@@ -36,6 +36,7 @@ export default function RootLayout({ children }: RootLayout) {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://revistaquehacer.pe"),
   title: {
     template: "%s | Revista Quehacer",
     default: "Revista Quehacer",
@@ -49,7 +50,6 @@ export const metadata: Metadata = {
     },
     description:
       "Pensamiento crítico. Actualidad nacional e internacional. Opinión sobre política y cultura. Libros.",
-    url: "https://revistaquehacer.com",
     images: "/cover.jpg",
   },
   twitter: {
