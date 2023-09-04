@@ -91,12 +91,16 @@ export async function generateMetadata({ params }: IssuePage): Promise<Metadata>
   const issue = await getIssue(numero);
   return {
     title: issue.titulo,
+    description: `Nº ${numero} ${issue.fecha}`,
     openGraph: {
       title: issue.titulo,
+      description: `Nº ${numero} ${issue.fecha}`,
+      url: `/${numero}`,
       images: issue.portada.url,
     },
     twitter: {
       title: issue.titulo,
+      description: `Nº ${numero} ${issue.fecha}`,
       images: issue.portada.url,
     },
   };

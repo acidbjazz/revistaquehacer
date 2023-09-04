@@ -64,18 +64,22 @@ export default async function ArticlePage({ params }: ArticlePage) {
 // export const dynamicParams = false;
 
 export async function generateMetadata({ params }: ArticlePage): Promise<Metadata> {
-  const { slug } = params;
+  const { numero, slug } = params;
   const article = await getArticle(slug);
   return {
     title: {
-      absolute: article.titulo + " | " + formatAuthors(article.autorCollection.items),
+      absolute: `${article.titulo} | ${formatAuthors(article.autorCollection.items)}`,
     },
+    description: `Revista Quehacer Nº ${numero}`,
     openGraph: {
-      title: article.titulo + " | " + formatAuthors(article.autorCollection.items),
+      title: `${article.titulo} | ${formatAuthors(article.autorCollection.items)}`,
+      description: `Revista Quehacer Nº ${numero}`,
+      url: `/${numero}/${slug}`,
       images: article.portada.url,
     },
     twitter: {
-      title: article.titulo + " | " + formatAuthors(article.autorCollection.items),
+      title: `${article.titulo} | ${formatAuthors(article.autorCollection.items)}`,
+      description: `Revista Quehacer Nº ${numero}`,
       images: article.portada.url,
     },
   };
