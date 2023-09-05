@@ -110,7 +110,7 @@ export async function getIssue(numero: string): Promise<Issue> {
 // }
 
 export async function getArticle(slug: string): Promise<Article> {
-  console.log("get error:", slug);
+  console.log("slug:", slug);
   const query = `{
     articuloCollection(where: {slug: "${slug}"}, limit: 1) {
       items {

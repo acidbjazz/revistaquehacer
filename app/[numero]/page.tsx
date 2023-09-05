@@ -52,6 +52,7 @@ export default async function IssuePage({ params }: IssuePage) {
                   </div>
                 );
               } else {
+                console.log("N" + numero, item.__typename);
                 const itemArticle = item as Article;
                 const article = await getArticle(itemArticle.slug);
                 return (
