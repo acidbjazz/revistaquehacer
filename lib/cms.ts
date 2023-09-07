@@ -70,6 +70,11 @@ export async function getIssue(numero: string): Promise<Issue> {
               titulo
               slug
               portada { url }
+              autorCollection(limit: 3) {
+                items {
+                  nombre
+                }
+              }
             }
           }
         }
@@ -110,7 +115,6 @@ export async function getIssue(numero: string): Promise<Issue> {
 // }
 
 export async function getArticle(slug: string): Promise<Article> {
-  console.log("slug:", slug);
   const query = `{
     articuloCollection(where: {slug: "${slug}"}, limit: 1) {
       items {

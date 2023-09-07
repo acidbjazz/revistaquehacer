@@ -7,7 +7,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Article, Section } from "@/lib/interfaces";
 import { getIssue, getIssues } from "@/lib/cms";
-// import { formatAuthors } from "@/lib/utils";
+import { formatAuthors } from "@/lib/utils";
 
 interface IssuePage {
   params: {
@@ -61,7 +61,7 @@ export default async function IssuePage({ params }: IssuePage) {
                     key={itemArticle.sys.id}
                   >
                     <span>{itemArticle.titulo}</span> /
-                    {/* {formatAuthors(article.autorCollection.items)} */}
+                    {formatAuthors(itemArticle.autorCollection.items)}
                   </Link>
                 );
               }
