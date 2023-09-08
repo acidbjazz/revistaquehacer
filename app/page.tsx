@@ -22,7 +22,13 @@ export default async function HomePage() {
       <section className={styles.lastIssue}>
         <h2>ÚLTIMO NÚMERO</h2>
         <Link href={`./${lastIssue.numero}`} className={styles.cover}>
-          <Image src={lastIssue.portada.url} alt="cover" width={1920} height={1080} />
+          <Image
+            src={lastIssue.portada.url}
+            alt="cover"
+            width={1920}
+            height={1080}
+            priority={true}
+          />
         </Link>
         <div className={styles.date}>
           Nº {lastIssue.numero} {lastIssue.fecha}

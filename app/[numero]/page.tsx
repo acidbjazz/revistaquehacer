@@ -36,6 +36,7 @@ export default async function IssuePage({ params }: IssuePage) {
           width={1920}
           height={1080}
           sizes="100vw"
+          priority={true}
         />
         <ReactMarkdown className={styles.coverCredits}>{issue.creditosPortada}</ReactMarkdown>
       </section>
@@ -53,14 +54,13 @@ export default async function IssuePage({ params }: IssuePage) {
                 );
               } else if (item.__typename === "Articulo") {
                 const itemArticle = item as Article;
-                // const article = await getArticle(itemArticle.slug);
                 return (
                   <Link
                     href={`./${numero}/${itemArticle.slug}`}
                     className={styles.article}
                     key={itemArticle.sys.id}
                   >
-                    <span>{itemArticle.titulo}</span> /
+                    <span>{itemArticle.titulo}</span> /{" "}
                     {formatAuthors(itemArticle.autorCollection.items)}
                   </Link>
                 );

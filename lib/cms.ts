@@ -69,12 +69,16 @@ export async function getIssue(numero: string): Promise<Issue> {
               sys { id }
               titulo
               slug
-              portada { url }
+              subtitulo
               autorCollection(limit: 3) {
                 items {
                   nombre
+                  bio
                 }
               }
+              portada { url }
+              creditosPortada
+              cuerpo
             }
           }
         }
@@ -84,7 +88,6 @@ export async function getIssue(numero: string): Promise<Issue> {
   const { data } = await graphqlClient(query);
   const issue = data.edicionCollection.items[0];
   const contents = issue.indiceCollection.items;
-  // console.log(contents);
   if (contents) {
     let section = "";
     contents.map((item: Section | Article) => {
@@ -102,46 +105,38 @@ export async function getIssue(numero: string): Promise<Issue> {
   return issue;
 }
 
-// export async function getArticlesSlug(): Promise<Article[]> {
+export async function getArticle(numero: string, slug: string): Promise<Article> {
+  const issue = await getIssue(numero);
+  function isSlug(item: Article | Section) {
+    if (item.__typename === "Articulo") {
+      const itemArticle = item as Article;
+      return itemArticle.slug === slug;
+    }
+  }
+  const article = issue.indiceCollection.items.find(isSlug) as Article;
+  return article;
+}
+
+// export async function getArticle(slug: string): Promise<Article> {
 //   const query = `{
-//     articuloCollection {
+//     articuloCollection(where: {slug: "${slug}"}, limit: 1) {
 //       items {
+//         sys { id }
+//         titulo
 //         slug
+//         subtitulo
+//         autorCollection(limit: 3) {
+//           items {
+//             nombre
+//             bio
+//           }
+//         }
+//         portada { url }
+//         creditosPortada
+//         cuerpo
 //       }
 //     }
 //   }`;
 //   const { data } = await graphqlClient(query);
-//   return data.articuloCollection.items;
-// }
-
-export async function getArticle(slug: string): Promise<Article> {
-  const query = `{
-    articuloCollection(where: {slug: "${slug}"}, limit: 1) {
-      items {
-        sys { id }
-        titulo
-        slug
-        subtitulo
-        autorCollection(limit: 3) {
-          items {
-            nombre
-            bio
-          }
-        }
-        portada { url }
-        creditosPortada
-        cuerpo
-      }
-    }
-  }`;
-  const { data } = await graphqlClient(query);
-  return data.articuloCollection.items[0];
-}
-
-// export async function getArticleLocal(issue:string, slug:string): Promise<Article> {
-//   const issueObject = await getIssue(issue);
-//   //search slug in issueObject
-//   const article:Article = issueObject.indiceCollection.items.find((item as Article) => item.slug === slug);
-//   return article;
-
+//   return data.articuloCollection.items[0];
 // }

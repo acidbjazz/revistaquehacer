@@ -16,12 +16,12 @@ interface ArticlePage {
 
 export default async function ArticlePage({ params }: ArticlePage) {
   const { numero, slug } = params;
-  const article = await getArticle(slug);
+  const article = await getArticle(numero, slug);
   const authors = article.autorCollection.items;
   return (
     <>
       <article className={styles.article}>
-        {/* <div className={styles.type}>{article.section}</div> */}
+        <div className={styles.type}>{article.section}</div>
         <h1>{article.titulo}</h1>
         {article.subtitulo && <h2> {article.subtitulo} </h2>}
         <div className={styles.authors}>
@@ -40,6 +40,7 @@ export default async function ArticlePage({ params }: ArticlePage) {
           width={960}
           height={1080}
           alt={article.titulo}
+          priority={true}
         />
         {article.creditosPortada && (
           <div className={styles.coverCredits}> {article.creditosPortada}</div>
@@ -65,7 +66,7 @@ export default async function ArticlePage({ params }: ArticlePage) {
 
 export async function generateMetadata({ params }: ArticlePage): Promise<Metadata> {
   const { numero, slug } = params;
-  const article = await getArticle(slug);
+  const article = await getArticle(numero, slug);
   return {
     title: {
       absolute: `${article.titulo} | ${formatAuthors(article.autorCollection.items)}`,
