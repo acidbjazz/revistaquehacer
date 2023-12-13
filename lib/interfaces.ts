@@ -27,6 +27,7 @@ export interface Article {
   creditosPortada?: string;
   cuerpo: string;
   section?: string;
+  next?: Article;
 }
 
 export interface Author {

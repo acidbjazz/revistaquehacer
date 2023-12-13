@@ -3,7 +3,6 @@ import styles from "@/styles/homePage.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { getIssues, getData } from "@/lib/cms";
 
 export default async function HomePage() {

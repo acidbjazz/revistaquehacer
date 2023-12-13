@@ -5,11 +5,11 @@
   .type {
     @include vars.eyebrow;
   }
-  h1 {
+  > h1 {
     @include vars.headline;
-    // margin-block-start: 40px;
+    margin-block-start: 40px;
   }
-  h2 {
+  > h2 {
     @include vars.subtitle;
     margin-block-start: 20px;
   }
@@ -53,6 +53,55 @@
   }
 }
 
+.next {
+  @include vars.grid-system;
+  grid-template-rows: repeat(6, min-content);
+  margin-block-start: 160px;
+  text-decoration: none;
+  .nextTitle {
+    @include vars.wrap(3);
+    padding-block-start: 80px;
+    @include vars.font-eyebrow;
+    color: vars.$gray700;
+    border-block-start: 1px solid vars.$gray300;
+  }
+  > .type {
+    @include vars.font-eyebrow;
+    color: vars.$gray700;
+    grid-column: 5 / 15;
+    margin-block-start: 80px;
+  }
+  > .title {
+    grid-column: 5 / 15;
+    margin-block-start: 40px;
+    color: black;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    h1 {
+      @include vars.font-headline;
+      font-size: 40px;
+    }
+  }
+  > h2 {
+    grid-column: 5 / 15;
+    @include vars.font-subtitle;
+    margin-block-start: 20px;
+  }
+  .authors {
+    grid-column: 5 / 15;
+    margin-block-start: 40px;
+    @include vars.author;
+    font-size: 14px;
+  }
+  .cover {
+    img {
+      height: auto;
+    }
+    grid-column: 16 / -5;
+    grid-row: 3 / -1;
+  }
+}
+
 @media (max-width: 1200px) {
   .article {
     .authors {
@@ -66,9 +115,6 @@
 
 @media (max-width: 900px) {
   .article {
-    h1 {
-      // margin-block-start: 20px;
-    }
     .authors {
       @include vars.wrap(2);
       margin-block-start: 20px;
@@ -82,6 +128,38 @@
     }
     .body {
       margin-block-start: 40px;
+    }
+  }
+  .next {
+    .nextTitle {
+      @include vars.wrap(1);
+    }
+    > .title {
+      h1 {
+        font-size: 32px;
+      }
+    }
+    > .type,
+    > .title,
+    h2,
+    .authors {
+      grid-column: 3 / 14;
+    }
+    .cover {
+      grid-column: 15 / -3;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .next {
+    > .title {
+      h1 {
+        font-size: 24px;
+      }
+    }
+    .authors {
+      font-size: 12px;
     }
   }
 }

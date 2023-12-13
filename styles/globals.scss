@@ -7,6 +7,7 @@
 }
 
 html {
+  scroll-behavior: smooth;
   // line-height: 1.15;
   // font-family: vars.$serif;
   // color: vars.$gray700;
@@ -28,5 +29,5 @@ h3 {
 }
 
 img {
-  border-radius: 20px;
+  border-radius: 10px;
 }

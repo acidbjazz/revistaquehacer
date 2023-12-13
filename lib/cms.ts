@@ -86,20 +86,19 @@ export async function getIssue(numero: string): Promise<Issue> {
     }
   }`;
   const { data } = await graphqlClient(query);
-  const issue = data.edicionCollection.items[0];
+  const issue: Issue = data.edicionCollection.items[0];
   const contents = issue.indiceCollection.items;
-  if (contents) {
+  if (contents && contents.length > 0) {
     let section = "";
-    contents.map((item: Section | Article) => {
-      if (item) {
-        if (item.__typename === "Seccion") {
-          const itemSection = item as Section;
-          section = itemSection.titulo;
-        } else {
-          const itemArticle = item as Article;
-          itemArticle.section = section;
-        }
-      }
+    contents.forEach((item) => {
+      item.__typename === "Seccion" && (section = item.titulo);
+      item.__typename === "Articulo" && ((item as Article).section = section);
+    });
+    const articles = contents.filter((item) => item.__typename === "Articulo") as Article[];
+    let nextArticle: Article | null = null;
+    articles.forEach((item, i) => {
+      nextArticle = articles[i + 1] as Article;
+      item.next = nextArticle;
     });
   }
   return issue;
@@ -107,13 +106,9 @@ export async function getIssue(numero: string): Promise<Issue> {
 
 export async function getArticle(numero: string, slug: string): Promise<Article> {
   const issue = await getIssue(numero);
-  function isSlug(item: Article | Section) {
-    if (item.__typename === "Articulo") {
-      const itemArticle = item as Article;
-      return itemArticle.slug === slug;
-    }
-  }
-  const article = issue.indiceCollection.items.find(isSlug) as Article;
+  const article = issue.indiceCollection.items.find(
+    (item) => item.__typename === "Articulo" && (item as Article).slug === slug
+  ) as Article;
   return article;
 }
 
