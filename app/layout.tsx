@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     description:
       "Pensamiento crítico. Actualidad nacional e internacional. Opinión sobre política y cultura. Libros.",
     url: "/",
-    images: "/cover.jpg",
+    // images: "/cover.jpg",
   },
   twitter: {
     card: "summary_large_image",
@@ -62,6 +62,6 @@ export const metadata: Metadata = {
     },
     description:
       "Pensamiento crítico. Actualidad nacional e internacional. Opinión sobre política y cultura. Libros.",
-    images: "/cover.jpg",
+    // images: "/cover.jpg",
   },
 };

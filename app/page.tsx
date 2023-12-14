@@ -1,5 +1,6 @@
 import styles from "@/styles/homePage.module.scss";
 
+import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
@@ -8,8 +9,9 @@ import { getIssues, getData } from "@/lib/cms";
 export default async function HomePage() {
   const data = await getData();
   const issues = await getIssues();
-  const lastIssue = issues[0];
-  const previousIssues = issues.slice(1);
+  const allowedIssues = issues.filter((issue) => issue.numero <= data.ultimoNumero);
+  const lastIssue = allowedIssues[0];
+  const previousIssues = allowedIssues.slice(1);
   return (
     <>
       <section className={styles.hero}>
@@ -57,4 +59,19 @@ export default async function HomePage() {
       </section>
     </>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const data = await getData();
+  const issues = await getIssues();
+  const allowedIssues = issues.filter((issue) => issue.numero <= data.ultimoNumero);
+  const lastIssue = allowedIssues[0];
+  return {
+    openGraph: {
+      images: lastIssue.portada.url,
+    },
+    twitter: {
+      images: lastIssue.portada.url,
+    },
+  };
 }
