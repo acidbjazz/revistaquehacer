@@ -108,12 +108,6 @@
 }
 
 @media (max-width: 1200px) {
-  .hero {
-    .cover {
-      height: 50vh;
-      object-fit: cover;
-    }
-  }
   .contents {
     .index {
       @include vars.wrap(3);
@@ -160,6 +154,18 @@
     margin-block-start: 100px;
     .body {
       margin-block-start: 40px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    .cover {
+      height: auto;
+      inline-size: 100%;
+      aspect-ratio: 1.4;
+      border-radius: 0;
+      object-fit: cover;
     }
   }
 }

@@ -2,3 +2,9 @@
   margin-inline: auto;
   margin-block: 120px;
 }
+
+@media (max-width: 900px) {
+  .header {
+    margin-block: 80px;
+  }
+}

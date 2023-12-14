@@ -5,7 +5,7 @@
   @include vars.font-tiny;
   background: vars.$gray800;
   color: white;
-  text-align: center;
+  // text-align: center;
   margin-block-start: 160px;
   .content {
     @include vars.wrap(7);
@@ -15,6 +15,9 @@
     }
     .data {
       margin-block-start: 80px;
+      p {
+        margin-block-start: 0;
+      }
       a {
         color: inherit;
       }

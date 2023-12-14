@@ -52,7 +52,7 @@
     @include vars.wrap(2);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 40px;
     margin-block-start: 80px;
     .card {
       color: inherit;
@@ -60,7 +60,6 @@
       img {
         width: 100%;
         height: auto;
-        border-radius: 15px;
       }
       .date {
         @include vars.eyebrow;
@@ -75,13 +74,10 @@
   }
 }
 
-@media (max-width: 1200px) {
-  .lastIssue {
-    .cover {
-      img {
-        height: 50vh;
-        object-fit: cover;
-      }
+@media (max-width: 1440px) {
+  .previousIssues {
+    .grid {
+      gap: 20px;
     }
   }
 }
@@ -96,6 +92,18 @@
     margin-block-start: 100px;
     .cover {
       margin-block-start: 40px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .lastIssue {
+    .cover {
+      img {
+        aspect-ratio: 1.4;
+        inline-size: calc(100% - 40px);
+        object-fit: cover;
+      }
     }
   }
   .previousIssues {
