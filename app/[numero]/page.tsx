@@ -8,6 +8,7 @@ import remarkGfm from "remark-gfm";
 import { Article, Section } from "@/lib/interfaces";
 import { getIssue, getIssues } from "@/lib/cms";
 import { formatAuthors } from "@/lib/utils";
+import NextArticle from "@/components/nextArticle";
 
 interface IssuePage {
   params: {
@@ -19,6 +20,7 @@ export default async function IssuePage({ params }: IssuePage) {
   const { numero } = params;
   const issue = await getIssue(numero);
   const contents = issue.indiceCollection.items;
+  const first: Article = contents.find((article) => article.__typename === "Articulo") as Article;
   return (
     <>
       <section className={styles.hero}>
@@ -75,6 +77,7 @@ export default async function IssuePage({ params }: IssuePage) {
           {issue.presentacion}
         </ReactMarkdown>
       </section>
+      <NextArticle issue={numero} article={first} />
     </>
   );
 }

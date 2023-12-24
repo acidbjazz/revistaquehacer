@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getArticle } from "@/lib/cms";
 import { formatAuthors } from "@/lib/utils";
+import NextArticle from "@/components/nextArticle";
 
 interface ArticlePage {
   params: {
@@ -50,20 +51,7 @@ export default async function ArticlePage({ params }: ArticlePage) {
         </ReactMarkdown>
       </article>
 
-      {article.next && (
-        <div className={styles.next}>
-          <h2 className={styles.nextTitle}>siguiente artículo</h2>
-          <div className={styles.type}>{article.next.section}</div>
-          <a href={article.next.slug} className={styles.title}>
-            <h1>{article.next.titulo}</h1>
-          </a>
-          {article.next.subtitulo && <h2> {article.next.subtitulo} </h2>}
-          <div className={styles.authors}>{formatAuthors(article.next.autorCollection.items)}</div>
-          <a href={article.next.slug} className={styles.cover}>
-            <Image src={article.next.portada.url} width={960} height={1080} alt={article.titulo} />
-          </a>
-        </div>
-      )}
+      {article.next && <NextArticle article={article.next} />}
     </>
   );
 }
