@@ -89,7 +89,6 @@ $columns: 26;
 }
 @mixin font-headline {
   font-family: $serif;
-  font-variant-numeric: lining-nums;
   font-size: 48px;
   line-height: 1.2;
   letter-spacing: -1px;
