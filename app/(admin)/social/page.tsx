@@ -43,7 +43,7 @@ export default async function SocialPage() {
   );
 }
 
-export async function ArticleRow({ issue, article, fonts }: any) {
+async function ArticleRow({ issue, article, fonts }: any) {
   const optionsPortrait = {
     width: 1080,
     height: 1920,
