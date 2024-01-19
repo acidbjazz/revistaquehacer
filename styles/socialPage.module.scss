@@ -1,0 +1,23 @@
+@use "@/styles/vars";
+
+.articles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  flex-basis: 100%;
+  .article {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .articles {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

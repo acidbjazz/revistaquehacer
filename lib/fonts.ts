@@ -1,4 +1,4 @@
-import { Open_Sans, Baskervville, Petrona } from "next/font/google";
+import { Open_Sans, Baskervville } from "next/font/google";
 
 export const sans = Open_Sans({
   weight: ["300", "400", "500"] /* 400 , 500, 300*/,
