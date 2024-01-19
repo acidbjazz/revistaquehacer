@@ -35,7 +35,7 @@ export default async function SocialPage() {
         if (item.__typename === "Articulo") {
           const itemArticle = item as Article;
           return (
-            <Article issue={issueNumber} fonts={fonts} article={itemArticle} key={item.sys.id} />
+            <ArticleRow issue={issueNumber} fonts={fonts} article={itemArticle} key={item.sys.id} />
           );
         }
       })}
@@ -43,7 +43,7 @@ export default async function SocialPage() {
   );
 }
 
-export async function Article({ issue, article, fonts }: any) {
+export async function ArticleRow({ issue, article, fonts }: any) {
   const optionsPortrait = {
     width: 1080,
     height: 1920,
