@@ -38,12 +38,6 @@ const css: any = {
     fontSize: "48px",
     color: "black",
   },
-  details: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    alignItems: "center",
-  },
   title: {
     color: "black",
     fontSize: "84px",
@@ -52,6 +46,12 @@ const css: any = {
     fontWeight: "400",
     textAlign: "center",
     marginBottom: "20px",
+  },
+  quote: {
+    fontSize: "40px",
+    fontFamily: "OpenSansLight",
+    textAlign: "center",
+    padding: "0 160px",
   },
   authors: {
     color: "black",
@@ -77,10 +77,8 @@ export default function PortraitQuote({ issue, article }: PortraitQuote) {
           <div style={css.line} />
           <div style={css.issue}>{issue}</div>
         </div>
-        <div style={css.details}>
-          <h1 style={css.title}>{article.quote}</h1>
-          <div style={css.authors}>{formatAuthors(article.autorCollection.items)}</div>
-        </div>
+        <div style={css.quote}>{article.quote}</div>
+        <div style={css.authors}>{formatAuthors(article.autorCollection.items)}</div>
       </div>
     </div>
   );

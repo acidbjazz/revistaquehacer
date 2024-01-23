@@ -12,19 +12,7 @@ const css: any = {
     width: cardWidth,
     height: cardHeight,
     position: "relative",
-  },
-  img: {
-    objectFit: "cover",
-    width: cardWidth,
-    height: cardHeight,
-    position: "absolute",
-  },
-  veil: {
-    width: cardWidth,
-    height: cardHeight,
-    position: "absolute",
-    background:
-      "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.5) 75%, rgba(0, 0, 0, 0.75) 100%)",
+    background: "white",
   },
   text: {
     display: "flex",
@@ -43,29 +31,27 @@ const css: any = {
   line: {
     width: "60px",
     height: "1.5px",
-    background: "white",
+    background: "black",
   },
   issue: {
     fontSize: "32px",
-    color: "white",
-  },
-  details: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    // alignItems: "center",
+    color: "black",
   },
   title: {
-    color: "white",
+    color: "black",
     fontSize: "63px",
     lineHeight: "1",
     letterSpacing: "-1px",
     fontWeight: "400",
-    // textAlign: "center",
     marginBottom: "20px",
   },
+  quote: {
+    fontSize: "32px",
+    fontFamily: "OpenSansLight",
+    padding: "0 60px 0 0",
+  },
   authors: {
-    color: "white",
+    color: "black",
     fontSize: "30px",
     textTransform: "uppercase",
     textAlign: "center",
@@ -82,18 +68,14 @@ interface Square {
 export default function Square({ issue, article }: Square) {
   return (
     <div style={css.card}>
-      <img style={css.img} src={article.portada.url} />
-      <div style={css.veil} />
       <div style={css.text}>
         <div style={css.logo}>
-          <SVG name="logoQ" width={51} color="white" />
+          <SVG name="logoQ" width={51} color="black" />
           <div style={css.line} />
           <div style={css.issue}>{issue}</div>
         </div>
-        <div style={css.details}>
-          <h1 style={css.title}>{article.titulo}</h1>
-          <div style={css.authors}>{formatAuthors(article.autorCollection.items)}</div>
-        </div>
+        <div style={css.quote}>{article.quote}</div>
+        <div style={css.authors}>{formatAuthors(article.autorCollection.items)}</div>
       </div>
     </div>
   );

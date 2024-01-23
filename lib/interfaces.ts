@@ -26,7 +26,7 @@ export interface Article {
   portada: { url: string };
   creditosPortada?: string;
   cuerpo: string;
-  seo?: string;
+  excerpt?: string;
   copy?: string;
   quote?: string;
   section?: string;

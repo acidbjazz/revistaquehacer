@@ -1,9 +1,9 @@
 import "@/styles/normalize.css";
-// import "@/styles/globals.scss";
+import "@/styles/globals.scss";
 import styles from "@/styles/adminLayout.module.scss";
 
-// import { sans, serif } from "@/lib/fonts";
-import Header from "@/components/header";
+import { sans, serif } from "@/lib/fonts";
+// import Header from "@/components/header";
 
 interface AdminLayout {
   children: React.ReactNode;
@@ -11,8 +11,7 @@ interface AdminLayout {
 
 export default function AdminLayout({ children }: AdminLayout) {
   return (
-    // <html lang="en" className={`${sans.variable} ${serif.variable}`}>
-    <html lang="en">
+    <html lang="en" className={`${sans.variable} ${serif.variable}`}>
       <body>
         <div className={styles.adminLayout}>
           {/* <Header /> */}

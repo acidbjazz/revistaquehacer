@@ -79,7 +79,7 @@ export async function getIssue(numero: string): Promise<Issue> {
               portada { url }
               creditosPortada
               cuerpo
-              seo
+              excerpt
               copy
               quote
             }

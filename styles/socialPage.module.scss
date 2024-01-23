@@ -2,22 +2,32 @@
 
 .articles {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 20px;
   padding: 20px;
   flex-basis: 100%;
   .article {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 20px;
+    .boxes {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
     img {
       width: 100%;
     }
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 900px) {
   .articles {
-    grid-template-columns: repeat(1, 1fr);
+    .article {
+      grid-template-columns: repeat(2, 1fr);
+      .boxes {
+        grid-column: 1 / -1;
+      }
+    }
   }
 }

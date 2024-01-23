@@ -1,0 +1,30 @@
+@use "@/styles/vars";
+
+.copyBox {
+  font-family: vars.$sans;
+  font-weight: 300;
+  font-size: 14px;
+  background: white;
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h3 {
+      padding-left: 10px;
+      font-weight: 400;
+      font-size: 14px;
+    }
+    button {
+      border: none;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  p {
+    padding: 10px;
+    margin-block-start: 0;
+  }
+}
