@@ -82,7 +82,7 @@ async function ArticleRow({ issue, article, fonts }: ArticleRow) {
       {/* <div dangerouslySetInnerHTML={{ __html: svgPortraitQuote }} /> */}
       <div className={styles.boxes}>
         <CopyBox title="copy" text={article.copy!} />
-        <CopyBox title="link" text={article.slug} />
+        <CopyBox title="link" text={`https://www.revistaquehacer.com/${issue}/${article.slug}`} />
       </div>
       <SVGtoPNG svg={svgSquareQuote} height={optionsSquare.height} />
       <SVGtoPNG svg={svgSquare} height={optionsSquare.height} />
@@ -91,6 +91,11 @@ async function ArticleRow({ issue, article, fonts }: ArticleRow) {
     </div>
   );
 }
+
+
+
+
+
 
 // export const svgToPngURL = (svg: string) =>
 //   new Promise<string>((resolve, reject) => {

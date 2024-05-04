@@ -43,7 +43,7 @@
   }
   .body {
     @include vars.body;
-    margin-block-start: 80px;
+    margin-top: 80px;
     [data-footnotes] {
       margin-block-start: 80px;
       padding-block-start: 40px;
