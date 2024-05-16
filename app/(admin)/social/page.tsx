@@ -92,11 +92,6 @@ async function ArticleRow({ issue, article, fonts }: ArticleRow) {
   );
 }
 
-
-
-
-
-
 // export const svgToPngURL = (svg: string) =>
 //   new Promise<string>((resolve, reject) => {
 //     const img = new Image();
