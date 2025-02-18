@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import styles from "@/styles/copyBox.module.scss";
-import SVG from "./svg";
+import SVG from "@/components/svg";
 
 interface CopyBox {
   title: string;

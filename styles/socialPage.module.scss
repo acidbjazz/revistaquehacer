@@ -1,22 +1,26 @@
 @use "@/styles/vars";
 
 .articles {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  display: flex;
+  flex-direction: column;
   gap: 20px;
   padding: 20px;
-  flex-basis: 100%;
   .article {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
+    flex-direction: column;
     gap: 20px;
     .boxes {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 20px;
     }
-    img {
-      width: 100%;
+    .posts {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+      img {
+        width: 100%;
+      }
     }
   }
 }
@@ -24,9 +28,21 @@
 @media (max-width: 900px) {
   .articles {
     .article {
-      grid-template-columns: repeat(2, 1fr);
+      .posts {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .articles {
+    .article {
       .boxes {
-        grid-column: 1 / -1;
+        grid-template-columns: 1fr;
+      }
+      .posts {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   }
