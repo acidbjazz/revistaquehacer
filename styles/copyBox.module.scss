@@ -5,6 +5,7 @@
   font-weight: 300;
   font-size: 14px;
   background: white;
+  position: relative;
   header {
     display: flex;
     justify-content: space-between;
@@ -28,4 +29,18 @@
     padding: 10px;
     margin-block-start: 0;
   }
+}
+
+.copiedMessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 0.9;
 }

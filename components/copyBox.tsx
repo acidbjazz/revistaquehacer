@@ -1,7 +1,7 @@
 "use client";
 
+import { useState } from "react";
 import styles from "@/styles/copyBox.module.scss";
-
 import SVG from "./svg";
 
 interface CopyBox {
@@ -9,9 +9,13 @@ interface CopyBox {
   text: string;
 }
 
-export default async function CopyBox({ title, text }: CopyBox) {
+export default function CopyBox({ title, text }: CopyBox) {
+  const [copied, setCopied] = useState(false);
+
   const copyToClipBoard = async () => {
     await navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); // El mensaje desaparece después de 2 segundos
   };
 
   return (
@@ -23,6 +27,7 @@ export default async function CopyBox({ title, text }: CopyBox) {
         </button>
       </header>
       <p>{text}</p>
+      {copied && <span className={styles.copiedMessage}>¡Copiado!</span>}
     </div>
   );
 }
