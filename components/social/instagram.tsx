@@ -3,7 +3,7 @@ import SVG from "@/components/svg";
 import { Article } from "@/lib/interfaces";
 
 const cardWidth: string = "1080px";
-const cardHeight: string = "1350px";
+const cardHeight: string = "1440px";
 
 const css: any = {
   card: {

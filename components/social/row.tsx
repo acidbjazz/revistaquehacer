@@ -32,7 +32,7 @@ export default async function ArticleRow({ issue, article, fonts }: ArticleRow) 
   };
   const optionsInstagram = {
     width: 1080,
-    height: 1350,
+    height: 1440,
     fonts,
   };
   //----
