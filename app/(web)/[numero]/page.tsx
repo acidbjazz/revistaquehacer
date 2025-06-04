@@ -10,10 +10,16 @@ import { getIssue, getIssues } from "@/lib/cms";
 import { formatAuthors } from "@/lib/utils";
 import NextArticle from "@/components/nextArticle";
 
+// interface IssuePage {
+//   params: {
+//     numero: string;
+//   };
+// }
+
 interface IssuePage {
-  params: {
+  params: Promise<{
     numero: string;
-  };
+  }>;
 }
 
 export default async function IssuePage({ params }: IssuePage) {
