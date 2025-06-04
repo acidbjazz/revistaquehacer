@@ -8,11 +8,18 @@ import { getArticle } from "@/lib/cms";
 import { formatAuthors } from "@/lib/utils";
 import NextArticle from "@/components/nextArticle";
 
+// interface ArticlePage {
+//   params: {
+//     numero: string;
+//     slug: string;
+//   };
+// }
+
 interface ArticlePage {
-  params: {
+  params: Promise<{
     numero: string;
     slug: string;
-  };
+  }>;
 }
 
 export default async function ArticlePage({ params }: ArticlePage) {
