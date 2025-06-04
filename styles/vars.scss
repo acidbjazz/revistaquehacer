@@ -18,7 +18,7 @@ $columns: 26;
 // MIXINS
 @mixin grid-system {
   display: grid;
-  grid-template-columns: 1fr repeat($columns, minmax(0, $page-width / $columns)) 1fr;
+  grid-template-columns: 1fr repeat($columns, minmax(0, calc($page-width / $columns))) 1fr;
 }
 @mixin wrap($column) {
   @if ($column == "full") {

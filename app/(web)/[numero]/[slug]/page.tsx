@@ -16,7 +16,7 @@ interface ArticlePage {
 }
 
 export default async function ArticlePage({ params }: ArticlePage) {
-  const { numero, slug } = params;
+  const { numero, slug } = await params;
   const article = await getArticle(numero, slug);
   const authors = article.autorCollection.items;
   return (
@@ -68,7 +68,7 @@ export default async function ArticlePage({ params }: ArticlePage) {
 // export const dynamicParams = false;
 
 export async function generateMetadata({ params }: ArticlePage): Promise<Metadata> {
-  const { numero, slug } = params;
+  const { numero, slug } = await params;
   const article = await getArticle(numero, slug);
   return {
     title: {

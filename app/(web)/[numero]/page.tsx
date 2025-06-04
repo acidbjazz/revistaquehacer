@@ -17,7 +17,7 @@ interface IssuePage {
 }
 
 export default async function IssuePage({ params }: IssuePage) {
-  const { numero } = params;
+  const { numero } = await params;
   const issue = await getIssue(numero);
   const contents = issue.indiceCollection.items;
   const first: Article = contents.find((article) => article.__typename === "Articulo") as Article;
@@ -90,7 +90,7 @@ export async function generateStaticParams() {
 export const dynamicParams = false;
 
 export async function generateMetadata({ params }: IssuePage): Promise<Metadata> {
-  const { numero } = params;
+  const { numero } = await params;
   const issue = await getIssue(numero);
   return {
     title: issue.titulo,
