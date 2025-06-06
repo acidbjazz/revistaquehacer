@@ -8,7 +8,7 @@ import ArticleRow from "@/components/social/row";
 import { readFileSync } from "fs";
 import path from "path";
 
-export const runtime = process.env.NODE_ENV === "production" ? "edge" : "nodejs";
+export const runtime = "nodejs";
 
 export default async function SocialPage() {
   const data = await getData();
