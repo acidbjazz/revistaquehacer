@@ -41,12 +41,12 @@ const css: any = {
     alignItems: "center",
   },
   line: {
-    width: "60px",
-    height: "1.5px",
+    width: "80px",
+    height: "2px",
     background: "white",
   },
   issue: {
-    fontSize: "32px",
+    fontSize: "48px",
     color: "white",
   },
   details: {
@@ -57,7 +57,7 @@ const css: any = {
   },
   title: {
     color: "white",
-    fontSize: "63px",
+    fontSize: "72px",
     lineHeight: "1",
     letterSpacing: "-1px",
     fontWeight: "400",
@@ -66,7 +66,7 @@ const css: any = {
   },
   authors: {
     color: "white",
-    fontSize: "30px",
+    fontSize: "40px",
     textTransform: "uppercase",
     textAlign: "center",
     fontFamily: "OpenSans",

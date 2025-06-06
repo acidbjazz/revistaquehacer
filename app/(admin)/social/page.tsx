@@ -5,26 +5,26 @@ import { Article } from "@/lib/interfaces";
 
 import ArticleRow from "@/components/social/row";
 
-export const runtime = "edge";
+import { readFileSync } from "fs";
+import path from "path";
+
+export const runtime = process.env.NODE_ENV === "production" ? "edge" : "nodejs";
 
 export default async function SocialPage() {
   const data = await getData();
   const issueNumber = data.ultimoNumero.toString();
-  const bvv = await fetch(new URL("/public/Baskervville-Italic.ttf", import.meta.url));
-  const os = await fetch(new URL("/public/OpenSans-SemiBold.ttf", import.meta.url));
-  const osl = await fetch(new URL("/public/OpenSans-Light.ttf", import.meta.url));
   const fonts = [
     {
       name: "Baskervville",
-      data: await bvv.arrayBuffer(),
+      data: readFileSync(path.join(process.cwd(), "public/Baskervville-Italic.ttf")),
     },
     {
       name: "OpenSans",
-      data: await os.arrayBuffer(),
+      data: readFileSync(path.join(process.cwd(), "public/OpenSans-SemiBold.ttf")),
     },
     {
       name: "OpenSansLight",
-      data: await osl.arrayBuffer(),
+      data: readFileSync(path.join(process.cwd(), "public/OpenSans-Light.ttf")),
     },
   ];
 
