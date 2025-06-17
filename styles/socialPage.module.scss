@@ -1,6 +1,7 @@
 @use "@/styles/vars";
 
 .articles {
+  font-family: vars.$sans;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -14,6 +15,15 @@
       grid-template-columns: 1fr 1fr;
       gap: 20px;
     }
+    > button {
+      width: fit-content;
+      padding: 5px 10px;
+      cursor: pointer;
+      border: none;
+      background: black;
+      color: white;
+    }
+
     .posts {
       display: grid;
       grid-template-columns: repeat(6, 1fr);

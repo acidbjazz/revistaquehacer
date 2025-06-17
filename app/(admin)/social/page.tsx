@@ -1,33 +1,16 @@
 import styles from "@/styles/socialPage.module.scss";
-
 import { getIssue, getData } from "@/lib/cms";
 import { Article } from "@/lib/interfaces";
+import ArticleRow from "@/components/social/row"; // Este es ahora el componente de cliente
 
-import ArticleRow from "@/components/social/row";
-
-export const runtime = "edge";
+// Ya no necesitamos 'edge' runtime. El runtime de Node por defecto es mejor para esto.
+// export const runtime = "edge"; // <-- LÍNEA ELIMINADA
 
 export default async function SocialPage() {
+  // Obtiene los datos iniciales. La caché de `revalidate: 20` aquí está perfecta
+  // porque solo se ejecuta una vez al cargar la página.
   const data = await getData();
   const issueNumber = data.ultimoNumero.toString();
-  const bvv = await fetch(new URL("/public/Baskervville-Italic.ttf", import.meta.url));
-  const os = await fetch(new URL("/public/OpenSans-SemiBold.ttf", import.meta.url));
-  const osl = await fetch(new URL("/public/OpenSans-Light.ttf", import.meta.url));
-  const fonts = [
-    {
-      name: "Baskervville",
-      data: await bvv.arrayBuffer(),
-    },
-    {
-      name: "OpenSans",
-      data: await os.arrayBuffer(),
-    },
-    {
-      name: "OpenSansLight",
-      data: await osl.arrayBuffer(),
-    },
-  ];
-
   const issue = await getIssue(issueNumber);
   const contents = issue.indiceCollection.items;
 
@@ -36,9 +19,7 @@ export default async function SocialPage() {
       {contents.map((item) => {
         if (item.__typename === "Articulo") {
           const itemArticle = item as Article;
-          return (
-            <ArticleRow issue={issueNumber} fonts={fonts} article={itemArticle} key={item.sys.id} />
-          );
+          return <ArticleRow issue={issueNumber} article={itemArticle} key={item.sys.id} />;
         }
       })}
     </section>

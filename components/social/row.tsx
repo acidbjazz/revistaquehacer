@@ -1,75 +1,69 @@
-import styles from "@/styles/socialPage.module.scss";
+"use client";
 
-import satori from "satori";
-import Portrait from "@/components/social/portrait";
-import Square from "@/components/social/square";
+import { useState } from "react";
+import styles from "@/styles/socialPage.module.scss";
+import { Article } from "@/lib/interfaces";
+import { generateImagesForArticle } from "@/app/actions";
+
 import SVGtoPNG from "@/components/social/svgtopng";
-import PortraitQuote from "@/components/social/portraitQuote";
-import SquareQuote from "@/components/social/squareQuote";
 import CopyBox from "@/components/social/copyBox";
 
-import { Article } from "@/lib/interfaces";
-
-import Instagram from "@/components/social/instagram";
-import InstagramQuote from "@/components/social/instagramQuote";
-
-interface ArticleRow {
+interface ArticleRowProps {
   issue: string;
   article: Article;
-  fonts: any;
 }
 
-export default async function ArticleRow({ issue, article, fonts }: ArticleRow) {
-  const optionsPortrait = {
-    width: 1080,
-    height: 1920,
-    fonts,
-  };
-  const optionsSquare = {
-    width: 1080,
-    height: 1080,
-    fonts,
-  };
-  const optionsInstagram = {
-    width: 1080,
-    height: 1350,
-    fonts,
-  };
-  //----
-  const svgPortraitQuote = await satori(
-    <PortraitQuote issue={issue} article={article} />,
-    optionsPortrait
-  );
-  const svgPortrait = await satori(<Portrait issue={issue} article={article} />, optionsPortrait);
-  const svgSquareQuote = await satori(
-    <SquareQuote issue={issue} article={article} />,
-    optionsSquare
-  );
-  const svgSquare = await satori(<Square issue={issue} article={article} />, optionsSquare);
-  const svgInstagramQuote = await satori(
-    <InstagramQuote issue={issue} article={article} />,
-    optionsInstagram
-  );
-  const svgInstagram = await satori(
-    <Instagram issue={issue} article={article} />,
-    optionsInstagram
-  );
+type GenerationResult = Awaited<ReturnType<typeof generateImagesForArticle>>;
 
-  //----
+export default function ArticleRow({ issue, article }: ArticleRowProps) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [result, setResult] = useState<GenerationResult | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleGenerateClick = async () => {
+    setIsLoading(true);
+    setError(null);
+    const response = await generateImagesForArticle(issue, article);
+    if (response.success) {
+      setResult(response);
+    } else {
+      setError(response.error || "Ocurrió un error desconocido.");
+    }
+    setIsLoading(false);
+  };
+
   return (
     <div className={styles.article}>
+      <h4>{article.titulo}</h4>
       <div className={styles.boxes}>
         <CopyBox title="copy" text={article.copy!} />
         <CopyBox title="link" text={`https://www.revistaquehacer.com/${issue}/${article.slug}`} />
       </div>
-      <div className={styles.posts}>
-        <SVGtoPNG svg={svgSquareQuote} height={optionsSquare.height} />
-        <SVGtoPNG svg={svgSquare} height={optionsSquare.height} />
-        <SVGtoPNG svg={svgInstagramQuote} height={optionsInstagram.height} />
-        <SVGtoPNG svg={svgInstagram} height={optionsInstagram.height} />
-        <SVGtoPNG svg={svgPortraitQuote} height={optionsPortrait.height} />
-        <SVGtoPNG svg={svgPortrait} height={optionsPortrait.height} />
-      </div>
+      <button onClick={handleGenerateClick} disabled={isLoading}>
+        {isLoading ? "Generando..." : "Generar Imágenes"}
+      </button>
+
+      {error && <p className={styles.error}>{error}</p>}
+
+      {result && result.success && (
+        <div className={styles.posts}>
+          {/* ✅ **CAMBIO 2: Renderizado condicional para las imágenes "Quote"** */}
+          {result.svgs?.squareQuote && (
+            <SVGtoPNG svg={result.svgs.squareQuote} height={result.options.squareHeight} />
+          )}
+          <SVGtoPNG svg={result.svgs?.square} height={result.options?.squareHeight} />
+
+          {result.svgs?.instagramQuote && (
+            <SVGtoPNG svg={result.svgs?.instagramQuote} height={result.options?.instagramHeight} />
+          )}
+          <SVGtoPNG svg={result.svgs?.instagram} height={result.options?.instagramHeight} />
+
+          {result.svgs?.portraitQuote && (
+            <SVGtoPNG svg={result.svgs?.portraitQuote} height={result.options?.portraitHeight} />
+          )}
+          <SVGtoPNG svg={result.svgs?.portrait} height={result.options?.portraitHeight} />
+        </div>
+      )}
       <hr />
     </div>
   );
