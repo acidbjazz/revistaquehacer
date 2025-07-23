@@ -1,6 +1,6 @@
 "use server";
 
-import { promises as fs } from "fs";
+import { promises as fs, existsSync } from "fs";
 import path from "path";
 import satori from "satori";
 import { Article } from "@/lib/interfaces";
@@ -13,13 +13,27 @@ import SquareQuote from "@/components/social/squareQuote";
 import Instagram from "@/components/social/instagram";
 import InstagramQuote from "@/components/social/instagramQuote";
 
+// async function loadFont(fontFileName: string) {
+//   const fontPath = path.join(process.cwd(), "public", fontFileName);
+//   return fs.readFile(fontPath);
+// }
+
 async function loadFont(fontFileName: string) {
   const fontPath = path.join(process.cwd(), "public", fontFileName);
+
+  // 🚨 Comprobamos si el archivo existe realmente en el sistema de archivos
+  const exists = existsSync(fontPath);
+  console.log(`¿Existe ${fontFileName} en ${fontPath}?`, exists);
+
+  if (!exists) {
+    throw new Error(`El archivo ${fontPath} no existe en el sistema de archivos`);
+  }
+
   return fs.readFile(fontPath);
 }
 
 export async function generateImagesForArticle(issue: string, article: Article) {
-  console.log("issue, article:", issue, article);
+  console.log("issue:", issue);
   try {
     const [bvv, os, osl] = await Promise.all([
       loadFont("Baskervville-Italic.ttf"),
