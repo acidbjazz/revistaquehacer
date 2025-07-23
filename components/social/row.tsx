@@ -24,10 +24,12 @@ export default function ArticleRow({ issue, article }: ArticleRowProps) {
     setIsLoading(true);
     setError(null);
     const response = await generateImagesForArticle(issue, article);
+    console.log("response:", response);
     if (response.success) {
       setResult(response);
     } else {
-      setError(response.error || "Ocurrió un error desconocido.");
+      // setError(response.error || "Ocurrió un error desconocido.");
+      setError(JSON.stringify(response, null, 2));
     }
     setIsLoading(false);
   };

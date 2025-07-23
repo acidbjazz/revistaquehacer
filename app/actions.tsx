@@ -19,6 +19,7 @@ async function loadFont(fontFileName: string) {
 }
 
 export async function generateImagesForArticle(issue: string, article: Article) {
+  console.log("issue, article:", issue, article);
   try {
     const [bvv, os, osl] = await Promise.all([
       loadFont("Baskervville-Italic.ttf"),
