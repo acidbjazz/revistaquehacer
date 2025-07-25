@@ -20,7 +20,8 @@ import InstagramQuote from "@/components/social/instagramQuote";
 
 async function loadFont(fontFileName: string) {
   // const fontPath = path.join(process.cwd(), "public", fontFileName);
-  const fontPath = path.join(process.cwd(), "assets/fonts", fontFileName);
+  const fontPath = path.join(process.cwd(), "assets", fontFileName);
+  console.log(`Cargando fuente desde: ${fontPath}`);
 
   // 🚨 Comprobamos si el archivo existe realmente en el sistema de archivos
   const exists = existsSync(fontPath);
