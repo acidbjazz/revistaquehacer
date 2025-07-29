@@ -9,11 +9,16 @@ import SquareQuote from "@/components/social/squareQuote";
 import Instagram from "@/components/social/instagram";
 import InstagramQuote from "@/components/social/instagramQuote";
 
-async function loadGoogleFont(fontFamily: string, weight: string = "400"): Promise<ArrayBuffer> {
+async function loadGoogleFont(
+  fontFamily: string,
+  weight: string = "400",
+  style: string = ""
+): Promise<ArrayBuffer> {
+  const styleParam = style ? `:ital,wght@1,${weight}` : `:wght@${weight}`;
   const url = `https://fonts.googleapis.com/css2?family=${fontFamily.replace(
     " ",
     "+"
-  )}:wght@${weight}&display=swap`;
+  )}${styleParam}&display=swap`;
   const css = await (await fetch(url)).text();
   const resource = css.match(/src: url\((.+)\) format\('(opentype|truetype)'\)/);
 
@@ -32,7 +37,7 @@ export async function generateImagesForArticle(issue: string, article: Article) 
 
   try {
     const [bvv, os, osl] = await Promise.all([
-      loadGoogleFont("Baskervville", "400"),
+      loadGoogleFont("Baskervville", "400", "italic"),
       loadGoogleFont("Open Sans", "400"),
       loadGoogleFont("Open Sans", "300"),
     ]);
