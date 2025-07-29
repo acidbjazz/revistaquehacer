@@ -1,11 +1,7 @@
 "use server";
 
-import { promises as fs, existsSync } from "fs";
-import path from "path";
 import satori from "satori";
 import { Article } from "@/lib/interfaces";
-
-// ... (tus imports de plantillas de imagen no cambian)
 import Portrait from "@/components/social/portrait";
 import Square from "@/components/social/square";
 import PortraitQuote from "@/components/social/portraitQuote";
@@ -13,35 +9,34 @@ import SquareQuote from "@/components/social/squareQuote";
 import Instagram from "@/components/social/instagram";
 import InstagramQuote from "@/components/social/instagramQuote";
 
-// async function loadFont(fontFileName: string) {
-//   const fontPath = path.join(process.cwd(), "public", fontFileName);
-//   return fs.readFile(fontPath);
-// }
+async function loadGoogleFont(fontFamily: string, weight: string = "400"): Promise<ArrayBuffer> {
+  const url = `https://fonts.googleapis.com/css2?family=${fontFamily.replace(
+    " ",
+    "+"
+  )}:wght@${weight}&display=swap`;
+  const css = await (await fetch(url)).text();
+  const resource = css.match(/src: url\((.+)\) format\('(opentype|truetype)'\)/);
 
-async function loadFont(fontFileName: string) {
-  // const fontPath = path.join(process.cwd(), "public", fontFileName);
-  const fontPath = path.join(process.cwd(), "assets", fontFileName);
-  console.log(`Cargando fuente desde: ${fontPath}`);
-
-  // 🚨 Comprobamos si el archivo existe realmente en el sistema de archivos
-  const exists = existsSync(fontPath);
-  console.log(`¿Existe ${fontFileName} en ${fontPath}?`, exists);
-
-  if (!exists) {
-    throw new Error(`El archivo ${fontPath} no existe en el sistema de archivos`);
+  if (resource) {
+    const response = await fetch(resource[1]);
+    if (response.status == 200) {
+      return await response.arrayBuffer();
+    }
   }
 
-  return fs.readFile(fontPath);
+  throw new Error(`Failed to load font: ${fontFamily}`);
 }
 
 export async function generateImagesForArticle(issue: string, article: Article) {
   console.log("issue:", issue);
+
   try {
     const [bvv, os, osl] = await Promise.all([
-      loadFont("Baskervville-Italic.ttf"),
-      loadFont("OpenSans-SemiBold.ttf"),
-      loadFont("OpenSans-Light.ttf"),
+      loadGoogleFont("Baskervville", "400"),
+      loadGoogleFont("Open Sans", "400"),
+      loadGoogleFont("Open Sans", "300"),
     ]);
+
     const fonts = [
       { name: "Baskervville", data: bvv },
       { name: "OpenSans", data: os },
@@ -52,50 +47,44 @@ export async function generateImagesForArticle(issue: string, article: Article) 
     const optionsSquare = { width: 1080, height: 1080, fonts };
     const optionsInstagram = { width: 1080, height: 1350, fonts };
 
-    // ✅ **LÓGICA CONDICIONAL**
-    // Revisa si el campo 'copy' tiene texto.
     const hasCopyText = article.copy && article.copy.trim() !== "";
 
-    // Prepara las promesas de Satori
-    const satoriPromises = [
+    const basePromises = [
       satori(<Portrait issue={issue} article={article} />, optionsPortrait),
       satori(<Square issue={issue} article={article} />, optionsSquare),
       satori(<Instagram issue={issue} article={article} />, optionsInstagram),
     ];
 
-    // Si hay texto en 'copy', añade las promesas para las imágenes "Quote"
-    if (hasCopyText) {
-      satoriPromises.push(
-        satori(<PortraitQuote issue={issue} article={article} />, optionsPortrait),
-        satori(<SquareQuote issue={issue} article={article} />, optionsSquare),
-        satori(<InstagramQuote issue={issue} article={article} />, optionsInstagram)
-      );
-    }
+    const allPromises = hasCopyText
+      ? [
+          ...basePromises,
+          satori(<PortraitQuote issue={issue} article={article} />, optionsPortrait),
+          satori(<SquareQuote issue={issue} article={article} />, optionsSquare),
+          satori(<InstagramQuote issue={issue} article={article} />, optionsInstagram),
+        ]
+      : basePromises;
 
-    // Ejecuta todas las promesas necesarias
-    const generatedSvgs = await Promise.all(satoriPromises);
-
-    // Asigna los resultados
-    const [svgPortrait, svgSquare, svgInstagram] = generatedSvgs;
-    let svgPortraitQuote, svgSquareQuote, svgInstagramQuote;
-
-    if (hasCopyText) {
-      svgPortraitQuote = generatedSvgs[3];
-      svgSquareQuote = generatedSvgs[4];
-      svgInstagramQuote = generatedSvgs[5];
-    }
+    const generatedSvgs = await Promise.all(allPromises);
+    const [
+      svgPortrait,
+      svgSquare,
+      svgInstagram,
+      svgPortraitQuote,
+      svgSquareQuote,
+      svgInstagramQuote,
+    ] = generatedSvgs;
 
     return {
       success: true,
-      copyText: article.copy!,
+      copyText: article.copy || "",
       link: `https://www.revistaquehacer.com/${issue}/${article.slug}`,
       svgs: {
-        squareQuote: svgSquareQuote, // Será undefined si no hay copy
         square: svgSquare,
-        instagramQuote: svgInstagramQuote, // Será undefined si no hay copy
+        squareQuote: hasCopyText ? svgSquareQuote : undefined,
         instagram: svgInstagram,
-        portraitQuote: svgPortraitQuote, // Será undefined si no hay copy
+        instagramQuote: hasCopyText ? svgInstagramQuote : undefined,
         portrait: svgPortrait,
+        portraitQuote: hasCopyText ? svgPortraitQuote : undefined,
       },
       options: {
         squareHeight: optionsSquare.height,
